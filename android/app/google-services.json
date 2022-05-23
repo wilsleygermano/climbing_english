@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "974431309322",
+    "project_id": "climbing-english",
+    "storage_bucket": "climbing-english.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974431309322:android:3e37567c84092c2f3499f3",
+        "android_client_info": {
+          "package_name": "com.example.climbing_english"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974431309322-p3kr94du3dis0s6sftsm11vfmk5sgcpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUuMBf9YveGDvfIp4MlfgeTS4pQDaL5Po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974431309322-p3kr94du3dis0s6sftsm11vfmk5sgcpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
