@@ -84,8 +84,7 @@ class LoginPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Observer(builder: (_) {
-                      return ElevatedButton(
+                    child: ElevatedButton(
                         onPressed: () {
                           _controller.loginUser;
                           Navigator.pushReplacement(
@@ -108,10 +107,9 @@ class LoginPage extends StatelessWidget {
                             AppColors.maincolor3,
                           ),
                         ),
-                      );
-                    }),
+                      )
+                    ),
                   ),
-                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0),
                   child: TextButton(
