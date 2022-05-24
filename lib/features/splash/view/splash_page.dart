@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 class SplashPage extends StatefulWidget {
 
   final _controller = SplashController();
+  
   SplashPage({Key? key}) : super(key: key);
 
   @override
@@ -25,7 +26,7 @@ class _SplashPageState extends State<SplashPage> {
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: Lottie.asset("lib/assets/splash.image.json"),
           );
-        }),
+        },),
       ),
     );
   }

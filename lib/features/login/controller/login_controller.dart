@@ -36,7 +36,6 @@ abstract class _LoginControllerBase with Store {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-
       print("Deu tudo certo");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

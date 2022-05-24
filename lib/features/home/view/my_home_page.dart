@@ -1,34 +1,27 @@
+import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../login/view/login_page.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key,}) : super(key: key);
 
-  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.maincolor2,
 
-        title: Text(widget.title),
+        
       ),
       body: Center(
        
@@ -40,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              'a',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
