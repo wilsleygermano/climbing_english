@@ -12,7 +12,7 @@ class ClimbingEnglishApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
 
-      home: LoginPage(),
+      home: RegisterPage(),
 
     );
   }

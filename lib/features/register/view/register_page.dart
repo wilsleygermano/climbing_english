@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:climbing_english/core/widgets/app_colors.dart';
+import 'package:climbing_english/core/widgets/app_fonts.dart';
 import 'package:climbing_english/core/widgets/my_text_field.dart';
 import 'package:climbing_english/features/register/controller/register_controller.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,9 @@ class RegisterPage extends StatelessWidget {
                     ),
                   ),
                 ),
-        
                 Observer(builder: (_) {
                   return Padding(
-                    padding: const EdgeInsets.only(top: 68, left: 21, right: 21),
+                    padding: const EdgeInsets.only(top: 30, left: 21, right: 21),
                     child: MyTextField(
                         textController: _controller.changeEmail,
                         hintText: "E-mail",
@@ -47,7 +47,7 @@ class RegisterPage extends StatelessWidget {
                 }),
                 Observer(builder: (_) {
                   return Padding(
-                    padding: const EdgeInsets.only(top: 68, left: 21, right: 21),
+                    padding: const EdgeInsets.only(top: 30, left: 21, right: 21),
                     child: MyTextField(
                         textController: _controller.changePassword,
                         hintText: "Password",
@@ -57,7 +57,7 @@ class RegisterPage extends StatelessWidget {
                 }),
                 Observer(builder: (_) {
                   return Padding(
-                    padding: const EdgeInsets.only(top: 68, left: 21, right: 21),
+                    padding: const EdgeInsets.only(top: 30, left: 21, right: 21),
                     child: MyTextField(
                         textController: _controller.changePasswordConfirmation,
                         hintText: "Confirm Password",
@@ -74,7 +74,7 @@ class RegisterPage extends StatelessWidget {
                           BoxDecoration(borderRadius: BorderRadius.circular(10)),
                       child: Observer(builder: (_) {
                         return ElevatedButton(
-                            child: Text("Create"),
+                            child: Text("CREATE", style: AppFonts.appfont24,),
                             onPressed: _controller.createUser,
                             style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(
