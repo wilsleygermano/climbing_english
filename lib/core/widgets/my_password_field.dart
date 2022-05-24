@@ -1,7 +1,6 @@
 import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 class MyPasswordField extends StatelessWidget {
   final Function(String) textController;
