@@ -1,4 +1,6 @@
 import 'package:climbing_english/features/login/view/login_page.dart';
+import 'package:climbing_english/features/register/view/register_page.dart';
+import 'package:climbing_english/features/splash/view/splash_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/home/view/my_home_page.dart';
@@ -14,7 +16,7 @@ class ClimbingEnglishApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: RegisterPage(),
     );
   }
 }
