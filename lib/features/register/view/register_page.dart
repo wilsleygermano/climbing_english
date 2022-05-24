@@ -45,7 +45,7 @@ class RegisterPage extends StatelessWidget {
                     child: MyTextField(
                         textController: _controller.changeEmail,
                         hintText: "E-mail",
-                        icon: Icon(Icons.email),
+                        icon: Icon(Icons.email, color: AppColors.maincolor1,),
                         textInputActionField: TextInputAction.next),
                   );
                 }),
@@ -56,7 +56,7 @@ class RegisterPage extends StatelessWidget {
                     child: MyPasswordField(
                       textController: _controller.changePassword,
                       hintText: "Password",
-                      icon: Icon(Icons.key),
+                      icon: Icon(Icons.key, color: AppColors.maincolor1,),
                       textInputActionField: TextInputAction.next,
                       isPasswordVisible: _controller.isPasswordVisible,
                       sufixIcon: IconButton(
@@ -81,7 +81,7 @@ class RegisterPage extends StatelessWidget {
                     child: MyPasswordField(
                       textController: _controller.changePasswordConfirmation,
                       hintText: "Confirm Password",
-                      icon: Icon(Icons.key),
+                      icon: Icon(Icons.key, color: AppColors.maincolor1,),
                       textInputActionField: TextInputAction.done,
                       isPasswordVisible:
                           _controller.isPasswordConfirmationVisible,
@@ -112,10 +112,14 @@ class RegisterPage extends StatelessWidget {
                       child: Observer(builder: (_) {
                         bool isLoading = _controller.isButtonAtLoadingState;
                         return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14)
+                            )
+                          ),
                           onPressed: _controller.areCredentialsValid
                               ? () async {
                                   _controller.setButtonToLoadingState();
-                                  final resource =
                                       await _controller.createUser();
                                   if (_controller.areCredentialsValid ==
                                       false) {
@@ -124,7 +128,7 @@ class RegisterPage extends StatelessWidget {
                                             builder: (context) {
                                               return Dialog(
                                                 backgroundColor:
-                                                    AppColors.maincolor3,
+                                                    AppColors.maincolor1,
                                                 child:
                                                     Text("Invalid Credentials"),
                                               );
@@ -146,13 +150,14 @@ class RegisterPage extends StatelessWidget {
                               : null,
                           child: isLoading
                               ? Container(
+                                color: AppColors.maincolor1,
                                   width: 24,
                                   height: 24,
                                   child: Lottie.network(
-                                      "https://assets10.lottiefiles.com/packages/lf20_wh5alaq6.json"))
+                                  "https://assets10.lottiefiles.com/packages/lf20_wh5alaq6.json"))
                               : Text(_controller.areCredentialsValid
                                   ? "CREATE"
-                                  : "Invalid Credentials"),
+                                  : "Invalid Credentials", style: AppFonts.appfont20.copyWith(color: AppColors.maincolor2), textAlign: TextAlign.center,),
                         );
                       })),
                 )
