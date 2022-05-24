@@ -83,22 +83,24 @@ class LoginPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        "LOGIN",
-                        style: TextStyle(
-                          fontFamily: GoogleFonts.lato().fontFamily,
-                          fontSize: 24,
-                          color: HexColor("F5F5F5"),
+                    child: Observer(builder: (_) {
+                      return ElevatedButton(
+                        onPressed: _controller.loginUser,
+                        child: Text(
+                          "LOGIN",
+                          style: TextStyle(
+                            fontFamily: GoogleFonts.lato().fontFamily,
+                            fontSize: 24,
+                            color: HexColor("F5F5F5"),
+                          ),
                         ),
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                          HexColor("738290"),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            HexColor("738290"),
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    }),
                   ),
                 ),
                 Padding(
