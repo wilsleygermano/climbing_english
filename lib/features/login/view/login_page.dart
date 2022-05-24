@@ -1,9 +1,9 @@
+import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:climbing_english/core/widgets/my_password_field.dart';
 import 'package:climbing_english/core/widgets/my_text_field.dart';
 import 'package:climbing_english/features/login/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class LoginPage extends StatelessWidget {
@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("FFFCF7"),
+      backgroundColor: AppColors.maincolor2,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
                       hintText: "E-mail",
                       icon: Icon(
                         Icons.alternate_email,
-                        color: HexColor("A1B5D8"),
+                        color: AppColors.maincolor1,
                       ),
                       textInputActionField: TextInputAction.next,
                     );
@@ -57,18 +57,18 @@ class LoginPage extends StatelessWidget {
                           icon: _controller.isPasswordVisible
                               ? Icon(
                                   Icons.visibility,
-                                  color: HexColor("A1B5D8"),
+                                  color: AppColors.maincolor1,
                                 )
                               : Icon(
                                   Icons.visibility_off,
-                                  color: HexColor("A1B5D8"),
+                                  color: AppColors.maincolor1,
                                 ),
                           onPressed: _controller.setPasswordVisibility,
                         ),
                         hintText: "Password",
                         icon: Icon(
                           Icons.key,
-                          color: HexColor("A1B5D8"),
+                          color: AppColors.maincolor1,
                         ),
                         textInputActionField: TextInputAction.done,
                       );
@@ -91,12 +91,12 @@ class LoginPage extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: GoogleFonts.lato().fontFamily,
                             fontSize: 24,
-                            color: HexColor("F5F5F5"),
+                            color: AppColors.maincolor2,
                           ),
                         ),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                            HexColor("738290"),
+                            AppColors.maincolor3,
                           ),
                         ),
                       );
@@ -112,7 +112,7 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: GoogleFonts.lato().fontFamily,
                         fontSize: 18,
-                        color: HexColor("A1B5D8"),
+                        color: AppColors.maincolor1,
                         decoration: TextDecoration.underline,
                       ),
                     ),
