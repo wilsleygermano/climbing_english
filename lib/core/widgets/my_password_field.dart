@@ -24,6 +24,7 @@ class MyPasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      textAlign: TextAlign.center,
       obscureText: isPasswordVisible,
       onChanged: textController,
       textInputAction: textInputActionField,

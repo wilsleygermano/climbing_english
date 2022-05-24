@@ -20,6 +20,7 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      textAlign: TextAlign.center,
       onChanged: textController,
       textInputAction: textInputActionField,
       style: TextStyle(
@@ -34,6 +35,10 @@ class MyTextField extends StatelessWidget {
           fontSize: 20,
         ),
         hintText: hintText,
+        suffixIcon: Icon(
+          Icons.abc_outlined,
+          color: Colors.transparent,
+        ),
         prefixIcon: icon,
         focusColor: HexColor("A1B5D8"),
         focusedBorder: OutlineInputBorder(
