@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 
-class MyTextField extends StatelessWidget {
+class MyPasswordField extends StatelessWidget {
   final Function(String) textController;
   final String hintText;
   final Icon icon;
-
   final TextInputAction textInputActionField;
+  final bool isPasswordVisible;
+  final IconButton sufixIcon;
 
-  const MyTextField({
-    Key? key,
-    required this.textController,
-    required this.hintText,
-    required this.icon,
-    required this.textInputActionField,
-  }) : super(key: key);
+
+  const MyPasswordField(
+      {Key? key,
+      required this.textController,
+      required this.hintText,
+      required this.icon,
+      required this.textInputActionField,
+      required this.isPasswordVisible,
+      required this.sufixIcon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      obscureText: isPasswordVisible,
       onChanged: textController,
       textInputAction: textInputActionField,
       style: TextStyle(
@@ -34,6 +39,7 @@ class MyTextField extends StatelessWidget {
           fontSize: 20,
         ),
         hintText: hintText,
+        suffixIcon: sufixIcon,
         prefixIcon: icon,
         focusColor: HexColor("A1B5D8"),
         focusedBorder: OutlineInputBorder(

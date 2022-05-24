@@ -12,9 +12,6 @@ abstract class _LoginControllerBase with Store {
     email = newEmail;
   }
 
-  @computed
-  bool get isEmailValid => email.contains("@");
-
   @observable
   String password = "";
 
@@ -24,5 +21,11 @@ abstract class _LoginControllerBase with Store {
   }
 
   @computed
-  bool get isPasswordValid => password.isNotEmpty;
+  bool get areCredentialsValid => password.isNotEmpty && email.contains("@");
+
+  @observable
+  bool isPasswordVisible = false;
+
+  @action
+  void setPasswordVisibility() => isPasswordVisible = !isPasswordVisible;
 }
