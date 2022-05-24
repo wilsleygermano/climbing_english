@@ -3,7 +3,6 @@ import 'package:climbing_english/features/register/view/register_page.dart';
 import 'package:climbing_english/features/splash/view/splash_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/home/view/my_home_page.dart';
 
 class ClimbingEnglishApp extends StatelessWidget {
   const ClimbingEnglishApp({Key? key}) : super(key: key);
@@ -12,11 +11,9 @@ class ClimbingEnglishApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
 
-        primarySwatch: Colors.blue,
-      ),
-      home: RegisterPage(),
+      home: LoginPage(),
+
     );
   }
 }
