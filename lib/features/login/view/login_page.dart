@@ -1,10 +1,10 @@
+import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:climbing_english/core/widgets/my_password_field.dart';
 import 'package:climbing_english/core/widgets/my_text_field.dart';
 import 'package:climbing_english/features/login/controller/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-
 
 class LoginPage extends StatelessWidget {
   final _controller = LoginController();
@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("FFFCF7"),
+      backgroundColor: AppColors.maincolor2,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
@@ -34,15 +34,17 @@ class LoginPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 21, right: 21, top: 68),
-                  child: MyTextField(
-                    textController: _controller.changeEmail,
-                    hintText: "E-mail",
-                    icon: Icon(
-                      Icons.alternate_email,
-                      color: HexColor("A1B5D8"),
-                    ),
-                    textInputActionField: TextInputAction.next,
-                  ),
+                  child: Observer(builder: (_) {
+                    return MyTextField(
+                      textController: _controller.changeEmail,
+                      hintText: "E-mail",
+                      icon: Icon(
+                        Icons.alternate_email,
+                        color: AppColors.maincolor1,
+                      ),
+                      textInputActionField: TextInputAction.next,
+                    );
+                  }),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 21, right: 21, top: 68),
@@ -55,22 +57,65 @@ class LoginPage extends StatelessWidget {
                           icon: _controller.isPasswordVisible
                               ? Icon(
                                   Icons.visibility,
-                                  color: HexColor("A1B5D8"),
+                                  color: AppColors.maincolor1,
                                 )
                               : Icon(
                                   Icons.visibility_off,
-                                  color: HexColor("A1B5D8"),
+                                  color: AppColors.maincolor1,
                                 ),
                           onPressed: _controller.setPasswordVisibility,
                         ),
                         hintText: "Password",
                         icon: Icon(
                           Icons.key,
-                          color: HexColor("A1B5D8"),
+                          color: AppColors.maincolor1,
                         ),
                         textInputActionField: TextInputAction.done,
                       );
                     },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 68.0),
+                  child: Container(
+                    height: 48,
+                    width: 128,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Observer(builder: (_) {
+                      return ElevatedButton(
+                        onPressed: _controller.loginUser,
+                        child: Text(
+                          "LOGIN",
+                          style: TextStyle(
+                            fontFamily: GoogleFonts.lato().fontFamily,
+                            fontSize: 24,
+                            color: AppColors.maincolor2,
+                          ),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                            AppColors.maincolor3,
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Need an account? Sign Up",
+                      style: TextStyle(
+                        fontFamily: GoogleFonts.lato().fontFamily,
+                        fontSize: 18,
+                        color: AppColors.maincolor1,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
                   ),
                 ),
               ],
