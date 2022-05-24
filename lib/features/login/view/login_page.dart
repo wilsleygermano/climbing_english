@@ -1,6 +1,7 @@
 import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:climbing_english/core/widgets/my_password_field.dart';
 import 'package:climbing_english/core/widgets/my_text_field.dart';
+import 'package:climbing_english/features/home/view/my_home_page.dart';
 import 'package:climbing_english/features/login/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -85,7 +86,15 @@ class LoginPage extends StatelessWidget {
                     ),
                     child: Observer(builder: (_) {
                       return ElevatedButton(
-                        onPressed: _controller.loginUser,
+                        onPressed: () {
+                          _controller.loginUser;
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyHomePage(title: "teste",),
+                            ),
+                          );
+                        },
                         child: Text(
                           "LOGIN",
                           style: TextStyle(

@@ -69,7 +69,7 @@ mixin _$LoginController on _LoginControllerBase, Store {
       AsyncAction('_LoginControllerBase.loginUser', context: context);
 
   @override
-  Future<void> loginUser() {
+  Future<dynamic> loginUser() {
     return _$loginUserAsyncAction.run(() => super.loginUser());
   }
 
