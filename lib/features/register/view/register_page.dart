@@ -112,44 +112,48 @@ class RegisterPage extends StatelessWidget {
                       child: Observer(builder: (_) {
                         bool isLoading = _controller.isButtonAtLoadingState;
                         return ElevatedButton(
-                            onPressed: _controller.areCredentialsValid
-                                ? () async {
-                                    _controller.setButtonToLoadingState();
-                                    final resource =
-                                        await _controller.createUser();
-                                    if (resource.hasError) {
-                                      await showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return Dialog(
-                                                  backgroundColor:
-                                                      AppColors.maincolor3,
-                                                  child: Text("Invalid Credentials"),
-                                                );
-                                              })
-                                          .then((_) => _controller
-                                              .isButtonAtLoadingState = false);
-                                    }
-
-                                    if (_controller.areCredentialsValid == true) {
-                                      await Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MyHomePage(title: "Hello")));
-                                    }
+                          onPressed: _controller.areCredentialsValid
+                              ? () async {
+                                  _controller.setButtonToLoadingState();
+                                  final resource =
+                                      await _controller.createUser();
+                                  if (_controller.areCredentialsValid ==
+                                      false) {
+                                    await showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return Dialog(
+                                                backgroundColor:
+                                                    AppColors.maincolor3,
+                                                child:
+                                                    Text("Invalid Credentials"),
+                                              );
+                                            })
+                                        .then((_) => _controller
+                                            .isButtonAtLoadingState = false);
                                   }
-                                  : null,
-                            child: isLoading
-                                ? Container(
-                                    width: 24,
-                                    height: 24,
-                                    child: Lottie.network(
-                                        "https://assets10.lottiefiles.com/packages/lf20_wh5alaq6.json"))
-                                : Text(_controller.areCredentialsValid
-                                    ? "Entrar"
-                                    : "Credenciais inválidas"),
-                                  );
+
+                                  if (_controller.areCredentialsValid == true) {
+                                    await Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            MyHomePage(title: "Hello"),
+                                      ),
+                                    );
+                                  }
+                                }
+                              : null,
+                          child: isLoading
+                              ? Container(
+                                  width: 24,
+                                  height: 24,
+                                  child: Lottie.network(
+                                      "https://assets10.lottiefiles.com/packages/lf20_wh5alaq6.json"))
+                              : Text(_controller.areCredentialsValid
+                                  ? "CREATE"
+                                  : "Invalid Credentials"),
+                        );
                       })),
                 )
               ],
