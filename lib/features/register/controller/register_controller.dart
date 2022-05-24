@@ -47,7 +47,7 @@ abstract class _RegisterControllerBase with Store {
   void setPasswordConfirmationVisibility() =>
       isPasswordConfirmationVisible = !isPasswordConfirmationVisible;
 
-@observable
+  @observable
   bool isButtonAtLoadingState = false;
 
   @action
@@ -55,13 +55,12 @@ abstract class _RegisterControllerBase with Store {
 
   @computed
   bool get areCredentialsValid =>
-      isEmailValid &&      
-      isPasswordValid &&
-      isPasswordConfirmationValid;
-
+      isEmailValid && isPasswordValid && isPasswordConfirmationValid;
 
   @action
   Future createUser() async {
+    setButtonToLoadingState();
+    await Future.delayed(Duration(seconds: 2));
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);

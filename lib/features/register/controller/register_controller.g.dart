@@ -31,6 +31,13 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
               () => super.isPasswordConfirmationValid,
               name: '_RegisterControllerBase.isPasswordConfirmationValid'))
           .value;
+  Computed<bool>? _$areCredentialsValidComputed;
+
+  @override
+  bool get areCredentialsValid => (_$areCredentialsValidComputed ??=
+          Computed<bool>(() => super.areCredentialsValid,
+              name: '_RegisterControllerBase.areCredentialsValid'))
+      .value;
 
   late final _$emailAtom =
       Atom(name: '_RegisterControllerBase.email', context: context);
@@ -115,6 +122,23 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     });
   }
 
+  late final _$isButtonAtLoadingStateAtom = Atom(
+      name: '_RegisterControllerBase.isButtonAtLoadingState', context: context);
+
+  @override
+  bool get isButtonAtLoadingState {
+    _$isButtonAtLoadingStateAtom.reportRead();
+    return super.isButtonAtLoadingState;
+  }
+
+  @override
+  set isButtonAtLoadingState(bool value) {
+    _$isButtonAtLoadingStateAtom
+        .reportWrite(value, super.isButtonAtLoadingState, () {
+      super.isButtonAtLoadingState = value;
+    });
+  }
+
   late final _$createUserAsyncAction =
       AsyncAction('_RegisterControllerBase.createUser', context: context);
 
@@ -182,6 +206,17 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   }
 
   @override
+  void setButtonToLoadingState() {
+    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
+        name: '_RegisterControllerBase.setButtonToLoadingState');
+    try {
+      return super.setButtonToLoadingState();
+    } finally {
+      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 email: ${email},
@@ -189,9 +224,11 @@ password: ${password},
 passwordConfirmation: ${passwordConfirmation},
 isPasswordVisible: ${isPasswordVisible},
 isPasswordConfirmationVisible: ${isPasswordConfirmationVisible},
+isButtonAtLoadingState: ${isButtonAtLoadingState},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},
-isPasswordConfirmationValid: ${isPasswordConfirmationValid}
+isPasswordConfirmationValid: ${isPasswordConfirmationValid},
+areCredentialsValid: ${areCredentialsValid}
     ''';
   }
 }

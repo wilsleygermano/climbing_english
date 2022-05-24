@@ -112,11 +112,6 @@ class RegisterPage extends StatelessWidget {
                       child: Observer(builder: (_) {
                         bool isLoading = _controller.isButtonAtLoadingState;
                         return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14)
-                            )
-                          ),
                           onPressed: _controller.areCredentialsValid
                               ? () async {
                                   _controller.setButtonToLoadingState();
@@ -151,10 +146,10 @@ class RegisterPage extends StatelessWidget {
                           child: isLoading
                               ? Container(
                                 color: AppColors.maincolor1,
-                                  width: 24,
-                                  height: 24,
-                                  child: Lottie.network(
-                                  "https://assets10.lottiefiles.com/packages/lf20_wh5alaq6.json"))
+                                  width: 50,
+                                  height: 50,
+                                  child: Lottie.asset(
+                                  "lib/assets/loading.book.json"))
                               : Text(_controller.areCredentialsValid
                                   ? "CREATE"
                                   : "Invalid Credentials", style: AppFonts.appfont20.copyWith(color: AppColors.maincolor2), textAlign: TextAlign.center,),
