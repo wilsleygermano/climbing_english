@@ -3,6 +3,7 @@ import 'package:climbing_english/core/widgets/my_password_field.dart';
 import 'package:climbing_english/core/widgets/my_text_field.dart';
 import 'package:climbing_english/features/home/view/my_home_page.dart';
 import 'package:climbing_english/features/login/controller/login_controller.dart';
+import 'package:climbing_english/features/register/view/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -91,7 +92,9 @@ class LoginPage extends StatelessWidget {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MyHomePage(title: "teste",),
+                              builder: (context) => MyHomePage(
+                                title: "teste",
+                              ),
                             ),
                           );
                         },
@@ -115,7 +118,14 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterPage(),
+                        ),
+                      );
+                    },
                     child: Text(
                       "Need an account? Sign Up",
                       style: TextStyle(
