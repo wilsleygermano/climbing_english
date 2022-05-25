@@ -105,6 +105,7 @@ class _RankPageState extends State<RankPage> {
                       ButtomModel(onPressed: () {}, text: "300 Words"),
                       const SizedBox(height: 150),
                       ButtomModel(onPressed: () {}, text: "100 Words"),
+                      const SizedBox(height: 10,)
                     ],
                   )
                 ],
