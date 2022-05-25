@@ -84,32 +84,30 @@ class LoginPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          _controller.loginUser;
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MyHomePage(title: "teste",),
+                    child: Observer(
+                      builder: (_) {
+                        return ElevatedButton(
+                          onPressed: () async {
+                            await _controller.loginUser(context);
+                          },
+                          child: Text(
+                            "LOGIN",
+                            style: TextStyle(
+                              fontFamily: GoogleFonts.lato().fontFamily,
+                              fontSize: 24,
+                              color: AppColors.maincolor2,
                             ),
-                          );
-                        },
-                        child: Text(
-                          "LOGIN",
-                          style: TextStyle(
-                            fontFamily: GoogleFonts.lato().fontFamily,
-                            fontSize: 24,
-                            color: AppColors.maincolor2,
                           ),
-                        ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            AppColors.maincolor3,
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                              AppColors.maincolor3,
+                            ),
                           ),
-                        ),
-                      )
+                        );
+                      },
                     ),
                   ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0),
                   child: TextButton(

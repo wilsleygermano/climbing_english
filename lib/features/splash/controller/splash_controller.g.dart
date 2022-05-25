@@ -14,7 +14,7 @@ mixin _$SplashController on _SplashControllerBase, Store {
       context: context);
 
   @override
-  Future<void> checkIfUserIsLoggedIn(BuildContext context) {
+  Future<dynamic> checkIfUserIsLoggedIn(BuildContext context) {
     return _$checkIfUserIsLoggedInAsyncAction
         .run(() => super.checkIfUserIsLoggedIn(context));
   }
