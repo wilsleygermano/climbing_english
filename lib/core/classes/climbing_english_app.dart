@@ -1,3 +1,4 @@
+import 'package:climbing_english/features/rank/view/rank_page.dart';
 import 'package:climbing_english/features/splash/view/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class ClimbingEnglishApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
 
-      home: SplashPage(),
+      home: RankPage(),
 
     );
   }
