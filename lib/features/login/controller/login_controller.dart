@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../home/view/my_home_page.dart';
 part 'login_controller.g.dart';
 
 class LoginController = _LoginControllerBase with _$LoginController;
@@ -32,12 +34,19 @@ abstract class _LoginControllerBase with Store {
   void setPasswordVisibility() => isPasswordVisible = !isPasswordVisible;
 
   @action
-  Future loginUser() async {
+  Future loginUser(BuildContext context) async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-
-      print("Deu tudo certo");
+      await Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MyHomePage(
+            title: "teste",
+          ),
+        ),
+      );
+      // print("O usuário é: ${FirebaseAuth.instance.currentUser!.uid}");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
