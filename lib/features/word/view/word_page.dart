@@ -23,6 +23,7 @@ class _WordPageState extends State<WordPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          toolbarHeight: 96,
           backgroundColor: AppColors.maincolor2,
           title: const Hero(
             tag: "climbing-english",

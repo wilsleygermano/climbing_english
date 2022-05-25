@@ -27,6 +27,7 @@ class _RankPageState extends State<RankPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          toolbarHeight: 96,
           backgroundColor: AppColors.maincolor2,
           title: const Hero(
             tag: "climbing-english",
@@ -68,7 +69,7 @@ class _RankPageState extends State<RankPage> {
                   textAlign: TextAlign.center,
                   style: AppFonts.textfont18.copyWith(
                       color: AppColors.textcolor, fontStyle: FontStyle.italic)),
-              SizedBox(height: 30),
+              SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
