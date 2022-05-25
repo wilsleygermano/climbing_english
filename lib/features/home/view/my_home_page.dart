@@ -1,5 +1,7 @@
+import 'package:climbing_english/features/home/controller/home_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../login/view/login_page.dart';
 
@@ -12,39 +14,45 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
 
-      _counter++;
-    });
-  }
+  final _controller = HomeController();
 
   @override
+  void initState() {
+    _controller.getWordOfTheDay();
+    super.initState();
+  }
+  
+  @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: Center(
-       
-        child: Column(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+        child: Observer(builder: (_) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text(
+                _controller.word,
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              Text(
+                _controller.phonetic,
+              ),
+              Text(
+                _controller.pronounceURL,
+              ),
+              Text(
+                _controller.firstMeaning,
+              ),
+            ],
+          );
+        }),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -52,18 +60,17 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), 
+      ),
     );
   }
 
   Future<void> _signOut() async {
-  await FirebaseAuth.instance.signOut();
-  await Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LoginPage(),
-          ),
-        );
+    await FirebaseAuth.instance.signOut();
+    await Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginPage(),
+      ),
+    );
+  }
 }
-}
-
