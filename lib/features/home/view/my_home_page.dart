@@ -143,7 +143,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              await _controller.speakWord;
+                            },
                             icon: Icon(
                               Icons.favorite,
                               color: AppColors.maincolor1,
@@ -159,22 +161,24 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       child: Row(
                         children: [
-                          Text(
-                            _controller.word.toTitleCase(),
-                            style: TextStyle(
-                              fontFamily: GoogleFonts.cormorant().fontFamily,
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.maincolor1,
-                            ),
-                          ),
+                          Observer(builder: (_) {
+                            return Text(
+                              _controller.word.toTitleCase(),
+                              style: TextStyle(
+                                fontFamily: GoogleFonts.cormorant().fontFamily,
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.maincolor1,
+                              ),
+                            );
+                          }),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: _controller.speakWord,
                             icon: Icon(
                               Icons.volume_up,
                               color: AppColors.maincolor1,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -186,16 +190,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Row(
                         children: [
                           Flexible(
-                            child: Text(
-                              _controller.firstMeaning,
-                              overflow: TextOverflow.visible,
-                              style: TextStyle(
-                                fontFamily: GoogleFonts.cormorant().fontFamily,
-                                fontSize: 18,
-                                color: AppColors.maincolor1,
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
+                            child: Observer(builder: (_) {
+                              return Text(
+                                _controller.firstMeaning,
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                  fontFamily:
+                                      GoogleFonts.cormorant().fontFamily,
+                                  fontSize: 18,
+                                  color: AppColors.maincolor1,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              );
+                            }),
                           ),
                         ],
                       ),

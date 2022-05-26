@@ -4,11 +4,15 @@ import 'package:dio/dio.dart';
 import 'package:mobx/mobx.dart';
 import 'package:english_words/english_words.dart';
 import 'dart:math';
+import 'package:flutter_tts/flutter_tts.dart';
 part 'home_controller.g.dart';
 
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
+
+  FlutterTts flutterTts = FlutterTts();
+
   @observable
   String word = "Carregando...";
 
@@ -29,8 +33,7 @@ abstract class _HomeControllerBase with Store {
     var randomWord = nouns.elementAt(_randomNumber);
     try {
       final dio = Dio();
-      final apiURL =
-          DictionaryApiUrl.url+randomWord;
+      final apiURL = DictionaryApiUrl.url + randomWord;
       var response = await dio.get(apiURL);
       final json = response.data;
       // final decodedJson = jsonDecode(json) as Map<String, dynamic>;
@@ -46,4 +49,12 @@ abstract class _HomeControllerBase with Store {
       pronounceURL = "Houve um erro: ${e.error}";
     }
   }
+
+@action
+Future speakWord() async {
+ await flutterTts.speak(word);
+ await flutterTts.awaitSpeakCompletion(true);
+ await flutterTts.setLanguage("en-US");
+}
+
 }

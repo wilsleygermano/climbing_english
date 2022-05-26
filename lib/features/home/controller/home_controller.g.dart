@@ -81,6 +81,14 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return _$getWordOfTheDayAsyncAction.run(() => super.getWordOfTheDay());
   }
 
+  late final _$speakWordAsyncAction =
+      AsyncAction('_HomeControllerBase.speakWord', context: context);
+
+  @override
+  Future<dynamic> speakWord() {
+    return _$speakWordAsyncAction.run(() => super.speakWord());
+  }
+
   @override
   String toString() {
     return '''
