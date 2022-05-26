@@ -6,21 +6,23 @@ import 'package:lottie/lottie.dart';
 
 class SplashPage extends StatefulWidget {
 
-  final _controller = SplashController();
-  SplashPage({Key? key}) : super(key: key);
+
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
+  final _controller = SplashController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.maincolor2,
       body: Center(
         child: Observer(builder: (_) {
-          widget._controller.checkIfUserIsLoggedIn(context);
+          _controller.checkIfUserIsLoggedIn(context);
           return Container(
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: Lottie.asset("lib/assets/splash.image.json"),

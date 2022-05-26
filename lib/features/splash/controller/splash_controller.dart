@@ -8,12 +8,15 @@ part 'splash_controller.g.dart';
 class SplashController = _SplashControllerBase with _$SplashController;
 
 abstract class _SplashControllerBase with Store {
+
+ 
+
   @action
-  Future<void> checkIfUserIsLoggedIn(BuildContext context) async {
+  Future checkIfUserIsLoggedIn(BuildContext context) async {
     await Future.delayed(
       const Duration(seconds: 3),
     );
-    FirebaseAuth.instance.authStateChanges().listen(
+   FirebaseAuth.instance.authStateChanges().listen(
       (User? user) {
         if (user != null) {
           Navigator.pushReplacement(
@@ -22,6 +25,7 @@ abstract class _SplashControllerBase with Store {
               builder: (context) => const MyHomePage(title: "teste"),
             ),
           );
+          return;
         } else {
           Navigator.pushReplacement(
             context,
