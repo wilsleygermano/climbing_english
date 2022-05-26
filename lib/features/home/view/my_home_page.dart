@@ -49,169 +49,171 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 28),
-              child: Container(
-                width: 272,
-                height: 220,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("lib/assets/logo.png"),
-                      fit: BoxFit.fill),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 28),
+                child: Container(
+                  width: 272,
+                  height: 220,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("lib/assets/logo.png"),
+                        fit: BoxFit.fill),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 32.0,
-                left: 18,
-                right: 18,
-              ),
-              child: TextField(
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: AppColors.maincolor1,
-                  fontFamily: GoogleFonts.lato().fontFamily,
-                  fontSize: 20,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 32.0,
+                  left: 18,
+                  right: 18,
                 ),
-                decoration: InputDecoration(
-                  hintStyle: TextStyle(
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
                     color: AppColors.maincolor1,
                     fontFamily: GoogleFonts.lato().fontFamily,
                     fontSize: 20,
                   ),
-                  hintText: "Type a Word",
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.keyboard_voice,
+                  decoration: InputDecoration(
+                    hintStyle: TextStyle(
                       color: AppColors.maincolor1,
+                      fontFamily: GoogleFonts.lato().fontFamily,
+                      fontSize: 20,
+                    ),
+                    hintText: "Type a Word",
+                    suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.keyboard_voice,
+                        color: AppColors.maincolor1,
+                      ),
+                    ),
+                    prefixIcon: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.search,
+                        color: AppColors.maincolor1,
+                      ),
+                    ),
+                    focusColor: AppColors.maincolor1,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.maincolor3,
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(
+                        color: AppColors.maincolor3,
+                      ),
                     ),
                   ),
-                  prefixIcon: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.search,
-                      color: AppColors.maincolor1,
-                    ),
-                  ),
-                  focusColor: AppColors.maincolor1,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.maincolor3,
-                    ),
-                  ),
-                  border: OutlineInputBorder(
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 76,
+                  left: 18,
+                  right: 18,
+                ),
+                child: Container(
+                  height: 256,
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
+                    border: Border.all(
                       color: AppColors.maincolor3,
                     ),
                   ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 76,
-                left: 18,
-                right: 18,
-              ),
-              child: Container(
-                height: 256,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: AppColors.maincolor3,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 23, left: 18),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Word of the day:",
-                            style: TextStyle(
-                              fontFamily: GoogleFonts.lato().fontFamily,
-                              fontSize: 18,
-                              color: AppColors.maincolor1,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () async {
-                              await _controller.speakWord;
-                            },
-                            icon: Icon(
-                              Icons.favorite,
-                              color: AppColors.maincolor1,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8,
-                        left: 18,
-                      ),
-                      child: Row(
-                        children: [
-                          Observer(builder: (_) {
-                            return Text(
-                              _controller.word.toTitleCase(),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 23, left: 18),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Word of the day:",
                               style: TextStyle(
-                                fontFamily: GoogleFonts.cormorant().fontFamily,
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
+                                fontFamily: GoogleFonts.lato().fontFamily,
+                                fontSize: 18,
                                 color: AppColors.maincolor1,
                               ),
-                            );
-                          }),
-                          IconButton(
-                            onPressed: _controller.speakWord,
-                            icon: Icon(
-                              Icons.volume_up,
-                              color: AppColors.maincolor1,
                             ),
-                          ),
-                        ],
+                            IconButton(
+                              onPressed: () async {
+                                await _controller.speakWord;
+                              },
+                              icon: Icon(
+                                Icons.favorite,
+                                color: AppColors.maincolor1,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8,
-                        left: 18,
-                      ),
-                      child: Row(
-                        children: [
-                          Flexible(
-                            child: Observer(builder: (_) {
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 8,
+                          left: 18,
+                        ),
+                        child: Row(
+                          children: [
+                            Observer(builder: (_) {
                               return Text(
-                                _controller.firstMeaning,
-                                overflow: TextOverflow.visible,
+                                _controller.word.toTitleCase(),
                                 style: TextStyle(
-                                  fontFamily:
-                                      GoogleFonts.cormorant().fontFamily,
-                                  fontSize: 18,
+                                  fontFamily: GoogleFonts.cormorant().fontFamily,
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
                                   color: AppColors.maincolor1,
-                                  fontStyle: FontStyle.italic,
                                 ),
                               );
                             }),
-                          ),
-                        ],
+                            IconButton(
+                              onPressed: _controller.speakWord,
+                              icon: Icon(
+                                Icons.volume_up,
+                                color: AppColors.maincolor1,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 8,
+                          left: 18,
+                        ),
+                        child: Row(
+                          children: [
+                            Flexible(
+                              child: Observer(builder: (_) {
+                                return Text(
+                                  _controller.firstMeaning,
+                                  overflow: TextOverflow.visible,
+                                  style: TextStyle(
+                                    fontFamily:
+                                        GoogleFonts.cormorant().fontFamily,
+                                    fontSize: 18,
+                                    color: AppColors.maincolor1,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                );
+                              }),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
