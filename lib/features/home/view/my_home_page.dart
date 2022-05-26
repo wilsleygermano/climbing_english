@@ -1,4 +1,5 @@
 import 'package:climbing_english/features/home/controller/home_controller.dart';
+import 'package:climbing_english/features/word/view/word_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -14,10 +15,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-
 class _MyHomePageState extends State<MyHomePage> {
-
-
   final _controller = HomeController();
 
   @override
@@ -25,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _controller.getWordOfTheDay();
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +47,17 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Text(
                 _controller.firstMeaning,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => WordPage(),
+                    ),
+                  );
+                },
+                child: Text("WordPage"),
               ),
             ],
           );
