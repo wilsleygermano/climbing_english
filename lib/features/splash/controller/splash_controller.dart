@@ -22,7 +22,7 @@ abstract class _SplashControllerBase with Store {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const MyHomePage(title: "teste"),
+              builder: (context) => const MyHomePage(),
             ),
           );
           return;

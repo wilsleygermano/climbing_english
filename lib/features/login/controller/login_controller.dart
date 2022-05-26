@@ -42,7 +42,6 @@ abstract class _LoginControllerBase with Store {
         context,
         MaterialPageRoute(
           builder: (context) => MyHomePage(
-            title: "teste",
           ),
         ),
       );

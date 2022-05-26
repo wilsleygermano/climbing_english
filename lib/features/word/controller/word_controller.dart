@@ -1,17 +1,14 @@
-import 'package:climbing_english/core/classes/dictionary_api_url.dart';
 import 'package:climbing_english/core/model/word_model.dart';
-import 'package:climbing_english/features/word/view/word_page.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:english_words/english_words.dart';
-import 'dart:math';
 import 'package:flutter_tts/flutter_tts.dart';
-part 'home_controller.g.dart';
+import 'package:mobx/mobx.dart';
 
-class HomeController = _HomeControllerBase with _$HomeController;
+import '../../../core/classes/dictionary_api_url.dart';
+part 'word_controller.g.dart';
 
-abstract class _HomeControllerBase with Store {
+class WordController = _WordControllerBase with _$WordController;
+
+abstract class _WordControllerBase with Store {
   FlutterTts flutterTts = FlutterTts();
 
   @observable
@@ -27,14 +24,11 @@ abstract class _HomeControllerBase with Store {
   String pronounceURL = "";
 
   @action
-  Future<void> getWordOfTheDay() async {
-    const int _max = 2500;
-    int _randomNumber = Random().nextInt(_max) + 1;
+  Future<void> getWordTyped(String wordTyped) async {
     WordModel wordModel;
-    var randomWord = nouns.elementAt(_randomNumber);
     try {
       final dio = Dio();
-      final apiURL = DictionaryApiUrl.url + randomWord;
+      final apiURL = DictionaryApiUrl.url + wordTyped;
       var response = await dio.get(apiURL);
       final json = response.data;
       // final decodedJson = jsonDecode(json) as Map<String, dynamic>;
@@ -51,28 +45,11 @@ abstract class _HomeControllerBase with Store {
     }
   }
 
-  @action
   Future speakWord() async {
     await flutterTts.speak(word);
     await flutterTts.awaitSpeakCompletion(true);
     await flutterTts.setLanguage("en-US");
   }
 
-  @observable
-  String wordTyped = "";
 
-  @action
-  void storeWordTyped(String newValue) {
-    wordTyped = newValue;
-  }
-
-  @action
-  Future searchWordTyped(BuildContext context) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => WordPage(wordTyped: wordTyped),
-      ),
-    );
-  }
 }
