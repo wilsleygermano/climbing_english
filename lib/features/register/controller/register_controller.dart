@@ -22,7 +22,7 @@ abstract class _RegisterControllerBase with Store {
   void changePassword(String newValue) => password = newValue;
 
   @computed
-  bool get isPasswordValid => password.length > 6;
+  bool get isPasswordValid => password.length > 4;
 
   @observable
   String passwordConfirmation = "";
@@ -47,12 +47,23 @@ abstract class _RegisterControllerBase with Store {
   void setPasswordConfirmationVisibility() =>
       isPasswordConfirmationVisible = !isPasswordConfirmationVisible;
 
+  @observable
+  bool isButtonAtLoadingState = false;
+
+  @action
+  void setButtonToLoadingState() => isButtonAtLoadingState = true;
+
+  @computed
+  bool get areCredentialsValid =>
+      isEmailValid && isPasswordValid && isPasswordConfirmationValid;
+
   @action
   Future createUser() async {
+    setButtonToLoadingState();
+    await Future.delayed(Duration(seconds: 2));
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      print("Deu tudo certo");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

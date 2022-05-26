@@ -7,6 +7,8 @@ class AppFonts {
   static TextStyle appfont24 = GoogleFonts.lato(fontSize: 24);
   static TextStyle textfont18 = GoogleFonts.cormorant(fontSize: 18);
   static TextStyle textfont26 = GoogleFonts.cormorant(fontSize: 26);
+    static TextStyle textfont32 = GoogleFonts.cormorant(fontSize: 32);
+
 
 
 
