@@ -13,7 +13,7 @@ class ClimbingEnglishApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
 
-      home: RankPage(),
+      home: WordPage(),
 
     );
   }

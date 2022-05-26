@@ -87,7 +87,7 @@ class _RankPageState extends State<RankPage> {
                     children: [
                       LinearPercentIndicator(
                         animateFromLastPercent: true,
-                        progressColor: AppColors.maincolor3,
+                        progressColor: Colors.pink,
                         linearStrokeCap: LinearStrokeCap.butt,
                         width: 9,
                         lineHeight: 420,
