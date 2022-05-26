@@ -137,7 +137,7 @@ class RegisterPage extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            MyHomePage(title: "Hello"),
+                                            MyHomePage(),
                                       ),
                                     );
                                   }
