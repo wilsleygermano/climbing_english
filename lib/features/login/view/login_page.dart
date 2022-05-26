@@ -1,7 +1,6 @@
 import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:climbing_english/core/widgets/my_password_field.dart';
 import 'package:climbing_english/core/widgets/my_text_field.dart';
-import 'package:climbing_english/features/home/view/my_home_page.dart';
 import 'package:climbing_english/features/login/controller/login_controller.dart';
 import 'package:climbing_english/features/register/view/register_page.dart';
 import 'package:flutter/material.dart';
