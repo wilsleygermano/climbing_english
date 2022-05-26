@@ -73,6 +73,22 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  late final _$wordTypedAtom =
+      Atom(name: '_HomeControllerBase.wordTyped', context: context);
+
+  @override
+  String get wordTyped {
+    _$wordTypedAtom.reportRead();
+    return super.wordTyped;
+  }
+
+  @override
+  set wordTyped(String value) {
+    _$wordTypedAtom.reportWrite(value, super.wordTyped, () {
+      super.wordTyped = value;
+    });
+  }
+
   late final _$getWordOfTheDayAsyncAction =
       AsyncAction('_HomeControllerBase.getWordOfTheDay', context: context);
 
@@ -89,13 +105,37 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return _$speakWordAsyncAction.run(() => super.speakWord());
   }
 
+  late final _$searchWordTypedAsyncAction =
+      AsyncAction('_HomeControllerBase.searchWordTyped', context: context);
+
+  @override
+  Future<dynamic> searchWordTyped(BuildContext context) {
+    return _$searchWordTypedAsyncAction
+        .run(() => super.searchWordTyped(context));
+  }
+
+  late final _$_HomeControllerBaseActionController =
+      ActionController(name: '_HomeControllerBase', context: context);
+
+  @override
+  void storeWordTyped(String newValue) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.storeWordTyped');
+    try {
+      return super.storeWordTyped(newValue);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 word: ${word},
 firstMeaning: ${firstMeaning},
 phonetic: ${phonetic},
-pronounceURL: ${pronounceURL}
+pronounceURL: ${pronounceURL},
+wordTyped: ${wordTyped}
     ''';
   }
 }

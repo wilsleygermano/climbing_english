@@ -1,12 +1,8 @@
 import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:climbing_english/features/home/controller/home_controller.dart';
-import 'package:climbing_english/features/word/view/word_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../login/view/login_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -72,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   right: 18,
                 ),
                 child: TextField(
+                  onChanged: _controller.storeWordTyped,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: AppColors.maincolor1,
@@ -86,18 +83,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     hintText: "Type a Word",
                     suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.keyboard_voice,
-                        color: AppColors.maincolor1,
-                      ),
-                    ),
-                    prefixIcon: IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        await _controller.searchWordTyped(context);
+                      },
                       icon: Icon(
                         Icons.search,
                         color: AppColors.maincolor1,
                       ),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.transparent,
                     ),
                     focusColor: AppColors.maincolor1,
                     focusedBorder: OutlineInputBorder(
@@ -166,7 +162,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               return Text(
                                 _controller.word.toTitleCase(),
                                 style: TextStyle(
-                                  fontFamily: GoogleFonts.cormorant().fontFamily,
+                                  fontFamily:
+                                      GoogleFonts.cormorant().fontFamily,
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.maincolor1,
