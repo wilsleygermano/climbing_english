@@ -44,13 +44,18 @@ class _WordPageState extends State<WordPage> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           backgroundColor: AppColors.maincolor2,
-          title: const Hero(
-            tag: "climbing-english",
-            child: Image(
-              image: AssetImage("lib/assets/logo.png"),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 88.0),
+            child: Container(
+              height: 56,
+              child: const Hero(
+                tag: "climbing-english",
+                child: Image(
+                  image: AssetImage("lib/assets/logo.png"),
+                ),
+              ),
             ),
           ),
-          actions: [Drawer()],
         ),
         body: Center(
           child: Column(
