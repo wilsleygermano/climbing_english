@@ -1,4 +1,5 @@
 import 'package:climbing_english/core/widgets/app_colors.dart';
+import 'package:climbing_english/core/widgets/custom_drawer.dart';
 import 'package:climbing_english/features/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -34,16 +35,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       backgroundColor: AppColors.maincolor2,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: AppColors.maincolor3),
         backgroundColor: AppColors.maincolor2,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.menu,
-            color: AppColors.maincolor3,
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         child: Center(
