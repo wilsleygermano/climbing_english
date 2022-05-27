@@ -1,4 +1,6 @@
-import 'package:climbing_english/features/word/controller/word_controller.dart';
+
+import 'package:climbing_english/core/widgets/custom_drawer.dart';
+import 'package:climbing_english/features/word/controller/word_controller.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,18 +43,20 @@ class _WordPageState extends State<WordPage> {
         ),
       ),
       child: Scaffold(
+        drawer: CustomDrawer(),
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          iconTheme: IconThemeData(color: AppColors.maincolor3),
           backgroundColor: AppColors.maincolor2,
           title: Padding(
-            padding: const EdgeInsets.only(left: 88.0),
+            padding: const EdgeInsets.only(left: 88),
+          
             child: Container(
               height: 56,
               child: const Hero(
                 tag: "climbing-english",
-                child: Image(
-                  image: AssetImage("lib/assets/logo.png"),
-                ),
+                child: Image(image: AssetImage("lib/assets/logo.png")),
+
               ),
             ),
           ),
