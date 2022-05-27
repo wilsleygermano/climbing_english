@@ -1,4 +1,3 @@
-
 import 'package:climbing_english/features/word/controller/word_controller.dart';
 import 'package:climbing_english/features/word/model/searched_word_model.dart';
 import 'package:climbing_english/core/widgets/custom_drawer.dart';
@@ -51,13 +50,11 @@ class _WordPageState extends State<WordPage> {
           backgroundColor: AppColors.maincolor2,
           title: Padding(
             padding: const EdgeInsets.only(left: 88),
-          
             child: Container(
               height: 56,
               child: const Hero(
                 tag: "climbing-english",
                 child: Image(image: AssetImage("lib/assets/logo.png")),
-
               ),
             ),
           ),
@@ -97,7 +94,8 @@ class _WordPageState extends State<WordPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 32, left: 22, right: 22),
+                  padding:
+                      const EdgeInsets.only(top: 32, left: 22, right: 22),
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.68,
                     decoration: BoxDecoration(
@@ -117,7 +115,8 @@ class _WordPageState extends State<WordPage> {
                               definitions[index].definition!,
                               overflow: TextOverflow.visible,
                               style: TextStyle(
-                                fontFamily: GoogleFonts.cormorant().fontFamily,
+                                fontFamily:
+                                    GoogleFonts.cormorant().fontFamily,
                                 fontSize: 18,
                                 color: Colors.black,
                                 fontStyle: FontStyle.italic,
