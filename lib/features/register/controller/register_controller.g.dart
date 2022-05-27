@@ -143,8 +143,8 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
       AsyncAction('_RegisterControllerBase.createUser', context: context);
 
   @override
-  Future<dynamic> createUser() {
-    return _$createUserAsyncAction.run(() => super.createUser());
+  Future<dynamic> createUser(BuildContext context) {
+    return _$createUserAsyncAction.run(() => super.createUser(context));
   }
 
   late final _$_RegisterControllerBaseActionController =

@@ -1,4 +1,5 @@
 import 'package:climbing_english/core/widgets/app_colors.dart';
+import 'package:climbing_english/core/widgets/custom_dialog.dart';
 import 'package:climbing_english/core/widgets/my_password_field.dart';
 import 'package:climbing_english/core/widgets/my_text_field.dart';
 import 'package:climbing_english/features/login/controller/login_controller.dart';
@@ -88,7 +89,14 @@ class LoginPage extends StatelessWidget {
                       builder: (_) {
                         return ElevatedButton(
                           onPressed: () async {
-                            await _controller.loginUser(context);
+                            if (_controller.areCredentialsValid == true) {
+                              await _controller.loginUser(context);
+                            }
+                            return CustomDialog(
+                                context, "Error", "Invalid Credentials.", "OK",
+                                () {
+                              Navigator.pop(context);
+                            });
                           },
                           child: Text(
                             "LOGIN",

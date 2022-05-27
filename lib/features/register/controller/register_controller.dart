@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../../core/widgets/custom_dialog.dart';
 part 'register_controller.g.dart';
 
 class RegisterController = _RegisterControllerBase with _$RegisterController;
@@ -58,7 +61,7 @@ abstract class _RegisterControllerBase with Store {
       isEmailValid && isPasswordValid && isPasswordConfirmationValid;
 
   @action
-  Future createUser() async {
+  Future createUser(BuildContext context) async {
     setButtonToLoadingState();
     await Future.delayed(Duration(seconds: 2));
     try {
@@ -66,9 +69,15 @@ abstract class _RegisterControllerBase with Store {
           .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        return CustomDialog(context, "Error", "Weak Password", "OK",
+            () => Navigator.pop(context));
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        return CustomDialog(
+            context,
+            "Error",
+            "The account already exists for that email.",
+            "OK",
+            () => Navigator.pop(context));
       }
     }
   }
