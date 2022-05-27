@@ -1,4 +1,6 @@
+import 'package:climbing_english/features/word/model/typed_word_model.dart';
 import 'package:climbing_english/core/model/word_model.dart';
+import 'package:climbing_english/features/word/model/searched_word_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:mobx/mobx.dart';
@@ -15,31 +17,32 @@ abstract class _WordControllerBase with Store {
   String word = "Carregando...";
 
   @observable
-  String firstMeaning = "Carregando...";
-
-  @observable
   String phonetic = "Carregando...";
 
   @observable
   String pronounceURL = "";
 
+  @observable
+  List<Definition> definitions = [];
+
   @action
   Future<void> getWordTyped(String wordTyped) async {
     WordModel wordModel;
+    List<Definition> apiDefinitions;
     try {
       final dio = Dio();
       final apiURL = DictionaryApiUrl.url + wordTyped;
       var response = await dio.get(apiURL);
-      final json = response.data;
-      // final decodedJson = jsonDecode(json) as Map<String, dynamic>;
+      // Retorna uma lista de mapas. 
+      final json = List<Map<String, dynamic>>.from(response.data);
       wordModel = WordModel.fromJson(json);
+      apiDefinitions = List<Definition>.from(json[0]["meanings"][0]["definitions"].map((map) => Definition.fromJson(map as Map<String, dynamic>)));
       word = wordModel.word!;
-      firstMeaning = wordModel.wordOfTheDayDefinition!;
       phonetic = wordModel.phonetic!;
       pronounceURL = wordModel.phoneticUrl!;
+      definitions = apiDefinitions;
     } on DioError catch (e) {
       word = "Houve um erro: ${e.error}";
-      firstMeaning = "Houve um erro: ${e.error}";
       phonetic = "Houve um erro: ${e.error}";
       pronounceURL = "Houve um erro: ${e.error}";
     }

@@ -25,22 +25,6 @@ mixin _$WordController on _WordControllerBase, Store {
     });
   }
 
-  late final _$firstMeaningAtom =
-      Atom(name: '_WordControllerBase.firstMeaning', context: context);
-
-  @override
-  String get firstMeaning {
-    _$firstMeaningAtom.reportRead();
-    return super.firstMeaning;
-  }
-
-  @override
-  set firstMeaning(String value) {
-    _$firstMeaningAtom.reportWrite(value, super.firstMeaning, () {
-      super.firstMeaning = value;
-    });
-  }
-
   late final _$phoneticAtom =
       Atom(name: '_WordControllerBase.phonetic', context: context);
 
@@ -73,6 +57,22 @@ mixin _$WordController on _WordControllerBase, Store {
     });
   }
 
+  late final _$definitionsAtom =
+      Atom(name: '_WordControllerBase.definitions', context: context);
+
+  @override
+  List<Definition> get definitions {
+    _$definitionsAtom.reportRead();
+    return super.definitions;
+  }
+
+  @override
+  set definitions(List<Definition> value) {
+    _$definitionsAtom.reportWrite(value, super.definitions, () {
+      super.definitions = value;
+    });
+  }
+
   late final _$getWordTypedAsyncAction =
       AsyncAction('_WordControllerBase.getWordTyped', context: context);
 
@@ -85,9 +85,9 @@ mixin _$WordController on _WordControllerBase, Store {
   String toString() {
     return '''
 word: ${word},
-firstMeaning: ${firstMeaning},
 phonetic: ${phonetic},
-pronounceURL: ${pronounceURL}
+pronounceURL: ${pronounceURL},
+definitions: ${definitions}
     ''';
   }
 }
