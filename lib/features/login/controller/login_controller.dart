@@ -41,8 +41,7 @@ abstract class _LoginControllerBase with Store {
       await Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => MyHomePage(
-          ),
+          builder: (context) => MyHomePage(),
         ),
       );
       // print("O usuário é: ${FirebaseAuth.instance.currentUser!.uid}");

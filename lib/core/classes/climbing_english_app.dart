@@ -1,3 +1,4 @@
+import 'package:climbing_english/features/about/view/info_page.dart';
 import 'package:climbing_english/features/favorite/view/favorite_page.dart';
 import 'package:climbing_english/features/rank/view/rank_page.dart';
 import 'package:climbing_english/features/splash/view/splash_page.dart';
@@ -14,7 +15,7 @@ class ClimbingEnglishApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
 
-      home: FavoritePage(),
+      home: SplashPage(),
 
     );
   }

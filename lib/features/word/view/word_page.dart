@@ -41,56 +41,58 @@ class _WordPageState extends State<WordPage> {
           image: AssetImage("lib/assets/fundo.app.jpeg"),
         ),
       ),
-      child: Scaffold(
-        drawer: CustomDrawer(),
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: AppColors.maincolor3),
-          backgroundColor: AppColors.maincolor2,
-          title: Padding(
-            padding: const EdgeInsets.only(left: 88),
-            child: Container(
-              height: 56,
-              child: const Hero(
-                tag: "climbing-english",
-                child: Image(image: AssetImage("lib/assets/logo.png")),
+      child: SingleChildScrollView(
+        child: Scaffold(
+          drawer: CustomDrawer(),
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            iconTheme: IconThemeData(color: AppColors.maincolor3),
+            backgroundColor: AppColors.maincolor2,
+            title: Padding(
+              padding: const EdgeInsets.only(left: 88),
+              child: Container(
+                height: 56,
+                child: const Hero(
+                  tag: "climbing-english",
+                  child: Image(image: AssetImage("lib/assets/logo.png")),
+                ),
               ),
             ),
           ),
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 68.0, left: 36, right: 36),
-                child: ListTile(
-                  title: Observer(builder: (_) {
-                    return Text(
-                      _controller.word.toTitleCase(),
-                      style: TextStyle(
-                        fontFamily: GoogleFonts.cormorant().fontFamily,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
-                      ),
-                    );
-                  }),
-                  textColor: AppColors.maincolor2,
-                  tileColor: AppColors.maincolor3,
-                  trailing: IconButton(
-                    onPressed: _controller.speakWord,
-                    icon: Icon(
-                      Icons.volume_up,
-                      color: AppColors.maincolor2,
-                    ),
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+          body: Center(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 15,
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 68.0, left: 36, right: 36),
+                  child: ListTile(
+                    title: Observer(builder: (_) {
+                      return Text(
+                        _controller.word.toTitleCase(),
+                        style: TextStyle(
+                          fontFamily: GoogleFonts.cormorant().fontFamily,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 32,
+                        ),
+                      );
+                    }),
+                    textColor: AppColors.maincolor2,
+                    tileColor: AppColors.maincolor3,
+                    trailing: IconButton(
+                      onPressed: _controller.speakWord,
+                      icon: Icon(
+                        Icons.volume_up,
+                        color: AppColors.maincolor2,
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

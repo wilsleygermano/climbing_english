@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/widgets/app_colors.dart';
 import '../../../core/widgets/app_fonts.dart';
@@ -49,7 +50,95 @@ class _FavoritePageState extends State<FavoritePage> {
                     style: AppFonts.textfont32.copyWith(
                         color: AppColors.maincolor2,
                         fontWeight: FontWeight.bold)),
-              ),              
+              ),
+                            Padding(
+                padding: const EdgeInsets.only(
+                  top: 76,
+                  left: 18,
+                  right: 18,
+                ),
+                child: Container(
+                  height: 256,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: AppColors.maincolor3,
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 23, left: 18),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Word of the day:",
+                              style: TextStyle(
+                                fontFamily: GoogleFonts.lato().fontFamily,
+                                fontSize: 18,
+                                color: AppColors.maincolor1,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 8,
+                          left: 18,
+                        ),
+                        child: Row(
+                          children: [
+                           Text(
+                                "Word",
+                                style: TextStyle(
+                                  fontFamily:
+                                      GoogleFonts.cormorant().fontFamily,
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.maincolor1,
+                                ),
+                              ),
+                            
+                            IconButton(
+                              onPressed:(){},
+                              icon: Icon(
+                                Icons.volume_up,
+                                color: AppColors.maincolor1,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 8,
+                          left: 18,
+                        ),
+                        child: Row(
+                          children: [
+                            Flexible(
+                              child:Text(
+                                  "Meaning",
+                                  overflow: TextOverflow.visible,
+                                  style: TextStyle(
+                                    fontFamily:
+                                        GoogleFonts.cormorant().fontFamily,
+                                    fontSize: 18,
+                                    color: AppColors.maincolor1,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                              ),
+                            
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )            
             ],
           ),
         ),

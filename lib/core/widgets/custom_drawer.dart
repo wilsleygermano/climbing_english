@@ -2,7 +2,12 @@ import 'dart:ui';
 
 import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:climbing_english/core/widgets/app_fonts.dart';
+import 'package:climbing_english/features/about/view/info_page.dart';
+import 'package:climbing_english/features/favorite/view/favorite_page.dart';
+import 'package:climbing_english/features/home/view/my_home_page.dart';
+import 'package:climbing_english/features/login/view/login_page.dart';
 import 'package:climbing_english/features/word/view/word_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -53,19 +58,46 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     height: 90,
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => InfoPage()));
+                      },
+                      child: Text("About",
+                          textAlign: TextAlign.center,
+                          style: AppFonts.appfont20
+                              .copyWith(color: AppColors.maincolor2))),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyHomePage()));
+                      },
                       child: Text("Home",
                           textAlign: TextAlign.center,
                           style: AppFonts.appfont20
                               .copyWith(color: AppColors.maincolor2))),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FavoritePage()));
+                      },
                       child: Text("My Words",
                           textAlign: TextAlign.center,
                           style: AppFonts.appfont20
                               .copyWith(color: AppColors.maincolor2))),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        await Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()));
+                      },
                       child: Text("Logout",
                           textAlign: TextAlign.center,
                           style: AppFonts.appfont20
