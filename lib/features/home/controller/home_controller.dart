@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:climbing_english/core/classes/dictionary_api_url.dart';
 import 'package:climbing_english/core/model/word_model.dart';
 import 'package:climbing_english/features/word/view/word_page.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:english_words/english_words.dart';
@@ -70,7 +67,7 @@ abstract class _HomeControllerBase with Store {
   String wordTyped = "";
 
   @computed 
-  bool get isTypedWordValid => wordTyped.isNotEmpty;
+  bool get isTypedWordValid => wordTyped.isNotEmpty && !wordTyped.contains(" ");
 
   @action
   void storeWordTyped(String newValue) {

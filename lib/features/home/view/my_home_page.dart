@@ -1,6 +1,7 @@
 import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:climbing_english/core/widgets/custom_drawer.dart';
 import 'package:climbing_english/features/home/controller/home_controller.dart';
+import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 right: 18,
               ),
               child: TextField(
+                autofillHints: nouns,
                 onChanged: _controller.storeWordTyped,
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -82,10 +84,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   suffixIcon: IconButton(
                     onPressed: () async {
                       if (_controller.isTypedWordValid == true) {
-                      await _controller.searchWordTyped(context);
+                        await _controller.searchWordTyped(context);
                       }
                       return null;
-
                     },
                     icon: Icon(
                       Icons.search,
@@ -109,6 +110,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
+                onEditingComplete: () async {
+                  if (_controller.isTypedWordValid == true) {
+                    await _controller.searchWordTyped(context);
+                  }
+                  return null;
+                },
               ),
             ),
             Padding(
