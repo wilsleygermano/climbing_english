@@ -71,12 +71,16 @@ class _WordPageState extends State<WordPage> {
                       const EdgeInsets.only(top: 68.0, left: 36, right: 36),
                   child: ListTile(
                     title: Observer(builder: (_) {
-                      return Text(
-                        _controller.word.toTitleCase(),
-                        style: TextStyle(
-                          fontFamily: GoogleFonts.cormorant().fontFamily,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 32,
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 28.0),
+                        child: Text(
+                          _controller.word.toTitleCase(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: GoogleFonts.cormorant().fontFamily,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 32,
+                          ),
                         ),
                       );
                     }),
@@ -94,11 +98,11 @@ class _WordPageState extends State<WordPage> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 32, left: 22, right: 22),
+                  padding: const EdgeInsets.only(top: 32, left: 22, right: 22),
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.68,
                     decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         color: Colors.black,
@@ -111,15 +115,18 @@ class _WordPageState extends State<WordPage> {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return Flexible(
-                            child: Text(
-                              definitions[index].definition!,
-                              overflow: TextOverflow.visible,
-                              style: TextStyle(
-                                fontFamily:
-                                    GoogleFonts.cormorant().fontFamily,
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontStyle: FontStyle.italic,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "- ${definitions[index].definition!}\n",
+                                overflow: TextOverflow.visible,
+                                style: TextStyle(
+                                    fontFamily:
+                                        GoogleFonts.cormorant().fontFamily,
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
                           );
