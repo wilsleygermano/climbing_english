@@ -54,7 +54,8 @@ abstract class _HomeControllerBase with Store {
   @action
   Future speakWord() async {
     await flutterTts.speak(word);
-    await flutterTts.awaitSpeakCompletion(true);
+    await flutterTts.setQueueMode(1);
+    // await flutterTts.awaitSpeakCompletion(true);
     await flutterTts.setLanguage("en-US");
   }
 
