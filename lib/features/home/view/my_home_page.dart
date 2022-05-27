@@ -36,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       drawer: CustomDrawer(),
       backgroundColor: AppColors.maincolor2,
       appBar: AppBar(
@@ -80,7 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   hintText: "Type a Word",
                   suffixIcon: IconButton(
                     onPressed: () async {
+                      if (_controller.isTypedWordValid == true) {
                       await _controller.searchWordTyped(context);
+                      }
+                      return null;
+
                     },
                     icon: Icon(
                       Icons.search,
@@ -113,103 +118,108 @@ class _MyHomePageState extends State<MyHomePage> {
                 right: 18,
               ),
               child: SingleChildScrollView(
-                child: Container(
-                  height: 256,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: AppColors.maincolor3,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 23, left: 18),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Word of the day:",
-                              style: TextStyle(
-                                fontFamily: GoogleFonts.lato().fontFamily,
-                                fontSize: 18,
-                                color: AppColors.maincolor1,
-                              ),
-                            ),
-                            Observer(builder: (_) {
-                              return IconButton(
-                                onPressed: () async {
-                                  await _controller.favoriteButtonPressed();
-                                },
-                                icon: _controller.isFavorited
-                                    ? Icon(
-                                        Icons.favorite,
-                                        color: AppColors.maincolor1,
-                                      )
-                                    : Icon(
-                                        Icons.favorite_outline,
-                                        color: AppColors.maincolor1,
-                                      ),
-                              );
-                            }),
-                          ],
-                        ),
+                child: InkWell(
+                  onTap: () async {
+                    await _controller.wordOfTheDayTapped(context);
+                  },
+                  child: Container(
+                    height: 256,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: AppColors.maincolor3,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 8,
-                          left: 18,
-                        ),
-                        child: Row(
-                          children: [
-                            Observer(builder: (_) {
-                              return Text(
-                                _controller.word.toTitleCase(),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 23, left: 18),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Word of the day:",
                                 style: TextStyle(
-                                  fontFamily:
-                                      GoogleFonts.cormorant().fontFamily,
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold,
+                                  fontFamily: GoogleFonts.lato().fontFamily,
+                                  fontSize: 18,
                                   color: AppColors.maincolor1,
                                 ),
-                              );
-                            }),
-                            IconButton(
-                              onPressed: _controller.speakWord,
-                              icon: Icon(
-                                Icons.volume_up,
-                                color: AppColors.maincolor1,
                               ),
-                            ),
-                          ],
+                              Observer(builder: (_) {
+                                return IconButton(
+                                  onPressed: () async {
+                                    await _controller.favoriteButtonPressed();
+                                  },
+                                  icon: _controller.isFavorited
+                                      ? Icon(
+                                          Icons.favorite,
+                                          color: AppColors.maincolor1,
+                                        )
+                                      : Icon(
+                                          Icons.favorite_outline,
+                                          color: AppColors.maincolor1,
+                                        ),
+                                );
+                              }),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 8,
-                          left: 18,
-                        ),
-                        child: Row(
-                          children: [
-                            Flexible(
-                              child: Observer(builder: (_) {
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 8,
+                            left: 18,
+                          ),
+                          child: Row(
+                            children: [
+                              Observer(builder: (_) {
                                 return Text(
-                                  _controller.firstMeaning,
-                                  overflow: TextOverflow.visible,
+                                  _controller.word.toTitleCase(),
                                   style: TextStyle(
                                     fontFamily:
                                         GoogleFonts.cormorant().fontFamily,
-                                    fontSize: 18,
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.bold,
                                     color: AppColors.maincolor1,
-                                    fontStyle: FontStyle.italic,
                                   ),
                                 );
                               }),
-                            ),
-                          ],
+                              IconButton(
+                                onPressed: _controller.speakWord,
+                                icon: Icon(
+                                  Icons.volume_up,
+                                  color: AppColors.maincolor1,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 8,
+                            left: 18,
+                          ),
+                          child: Row(
+                            children: [
+                              Flexible(
+                                child: Observer(builder: (_) {
+                                  return Text(
+                                    _controller.firstMeaning,
+                                    overflow: TextOverflow.visible,
+                                    style: TextStyle(
+                                      fontFamily:
+                                          GoogleFonts.cormorant().fontFamily,
+                                      fontSize: 18,
+                                      color: AppColors.maincolor1,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                  );
+                                }),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

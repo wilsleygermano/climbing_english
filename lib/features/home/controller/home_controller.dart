@@ -63,12 +63,14 @@ abstract class _HomeControllerBase with Store {
   Future speakWord() async {
     await flutterTts.speak(word);
     await flutterTts.setQueueMode(1);
-    // await flutterTts.awaitSpeakCompletion(true);
     await flutterTts.setLanguage("en-US");
   }
 
   @observable
   String wordTyped = "";
+
+  @computed 
+  bool get isTypedWordValid => wordTyped.isNotEmpty;
 
   @action
   void storeWordTyped(String newValue) {
@@ -84,6 +86,17 @@ abstract class _HomeControllerBase with Store {
       ),
     );
   }
+
+@action
+Future wordOfTheDayTapped(BuildContext context) async {
+  await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WordPage(wordTyped: word),
+      ),
+    );
+}
+
 
   @observable
   bool isFavorited = false;
