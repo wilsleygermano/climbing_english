@@ -89,6 +89,22 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  late final _$isFavoritedAtom =
+      Atom(name: '_HomeControllerBase.isFavorited', context: context);
+
+  @override
+  bool get isFavorited {
+    _$isFavoritedAtom.reportRead();
+    return super.isFavorited;
+  }
+
+  @override
+  set isFavorited(bool value) {
+    _$isFavoritedAtom.reportWrite(value, super.isFavorited, () {
+      super.isFavorited = value;
+    });
+  }
+
   late final _$getWordOfTheDayAsyncAction =
       AsyncAction('_HomeControllerBase.getWordOfTheDay', context: context);
 
@@ -114,6 +130,26 @@ mixin _$HomeController on _HomeControllerBase, Store {
         .run(() => super.searchWordTyped(context));
   }
 
+  late final _$checkIfAWordIsFavoritedAsyncAction = AsyncAction(
+      '_HomeControllerBase.checkIfAWordIsFavorited',
+      context: context);
+
+  @override
+  Future<dynamic> checkIfAWordIsFavorited() {
+    return _$checkIfAWordIsFavoritedAsyncAction
+        .run(() => super.checkIfAWordIsFavorited());
+  }
+
+  late final _$favoriteButtonPressedAsyncAction = AsyncAction(
+      '_HomeControllerBase.favoriteButtonPressed',
+      context: context);
+
+  @override
+  Future<dynamic> favoriteButtonPressed() {
+    return _$favoriteButtonPressedAsyncAction
+        .run(() => super.favoriteButtonPressed());
+  }
+
   late final _$_HomeControllerBaseActionController =
       ActionController(name: '_HomeControllerBase', context: context);
 
@@ -135,7 +171,8 @@ word: ${word},
 firstMeaning: ${firstMeaning},
 phonetic: ${phonetic},
 pronounceURL: ${pronounceURL},
-wordTyped: ${wordTyped}
+wordTyped: ${wordTyped},
+isFavorited: ${isFavorited}
     ''';
   }
 }
