@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:climbing_english/core/widgets/app_fonts.dart';
+import 'package:climbing_english/core/widgets/custom_dialog.dart';
 import 'package:climbing_english/core/widgets/my_password_field.dart';
 import 'package:climbing_english/core/widgets/my_text_field.dart';
 import 'package:climbing_english/features/home/view/my_home_page.dart';
@@ -45,7 +46,10 @@ class RegisterPage extends StatelessWidget {
                     child: MyTextField(
                         textController: _controller.changeEmail,
                         hintText: "E-mail",
-                        icon: Icon(Icons.email, color: AppColors.maincolor1,),
+                        icon: Icon(
+                          Icons.email,
+                          color: AppColors.maincolor1,
+                        ),
                         textInputActionField: TextInputAction.next),
                   );
                 }),
@@ -56,21 +60,23 @@ class RegisterPage extends StatelessWidget {
                     child: MyPasswordField(
                       textController: _controller.changePassword,
                       hintText: "Password",
-                      icon: Icon(Icons.key, color: AppColors.maincolor1,),
+                      icon: Icon(
+                        Icons.key,
+                        color: AppColors.maincolor1,
+                      ),
                       textInputActionField: TextInputAction.next,
                       isPasswordVisible: _controller.isPasswordVisible,
                       sufixIcon: IconButton(
-                        icon: _controller.isPasswordVisible
-                            ? Icon(
-                                Icons.visibility,
-                                color: AppColors.maincolor1,
-                              )
-                            : Icon(
-                                Icons.visibility_off,
-                                color: AppColors.maincolor1,
-                              ),
-                        onPressed: _controller.setPasswordVisibility,
-                      ),
+                          icon: _controller.isPasswordVisible
+                              ? Icon(
+                                  Icons.visibility,
+                                  color: AppColors.maincolor1,
+                                )
+                              : Icon(
+                                  Icons.visibility_off,
+                                  color: AppColors.maincolor1,
+                                ),
+                          onPressed: _controller.setPasswordVisibility),
                     ),
                   );
                 }),
@@ -81,7 +87,10 @@ class RegisterPage extends StatelessWidget {
                     child: MyPasswordField(
                       textController: _controller.changePasswordConfirmation,
                       hintText: "Confirm Password",
-                      icon: Icon(Icons.key, color: AppColors.maincolor1,),
+                      icon: Icon(
+                        Icons.key,
+                        color: AppColors.maincolor1,
+                      ),
                       textInputActionField: TextInputAction.done,
                       isPasswordVisible:
                           _controller.isPasswordConfirmationVisible,
@@ -112,21 +121,29 @@ class RegisterPage extends StatelessWidget {
                       child: Observer(builder: (_) {
                         bool isLoading = _controller.isButtonAtLoadingState;
                         return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: isLoading
+                                ? AppColors.maincolor3
+                                : _controller.areCredentialsValid
+                                    ? AppColors.maincolor3
+                                    : AppColors.maincolor1,
+                          ),
                           onPressed: _controller.areCredentialsValid
                               ? () async {
                                   _controller.setButtonToLoadingState();
-                                      await _controller.createUser();
+                                  await _controller.createUser();
                                   if (_controller.areCredentialsValid ==
                                       false) {
                                     await showDialog(
                                             context: context,
                                             builder: (context) {
-                                              return Dialog(
-                                                backgroundColor:
-                                                    AppColors.maincolor1,
-                                                child:
-                                                    Text("Invalid Credentials"),
-                                              );
+                                              return CustomDialog(
+                                                  context,
+                                                  "Error!",
+                                                  "Complete your Data",
+                                                  "OK", () {
+                                                Navigator.pop(context);
+                                              });
                                             })
                                         .then((_) => _controller
                                             .isButtonAtLoadingState = false);
@@ -136,8 +153,7 @@ class RegisterPage extends StatelessWidget {
                                     await Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            MyHomePage(),
+                                        builder: (context) => MyHomePage(),
                                       ),
                                     );
                                   }
@@ -145,14 +161,19 @@ class RegisterPage extends StatelessWidget {
                               : null,
                           child: isLoading
                               ? Container(
-                                color: AppColors.maincolor1,
-                                  width: 50,
-                                  height: 50,
+                                  color: AppColors.maincolor3,
+                                  width: 60,
+                                  height: 60,
                                   child: Lottie.asset(
-                                  "lib/assets/loading.book.json"))
-                              : Text(_controller.areCredentialsValid
-                                  ? "CREATE"
-                                  : "Invalid Credentials", style: AppFonts.appfont20.copyWith(color: AppColors.maincolor2), textAlign: TextAlign.center,),
+                                      "lib/assets/loading.book.json"))
+                              : Text(
+                                  _controller.areCredentialsValid
+                                      ? "CREATE"
+                                      : "CREATE",
+                                  style: AppFonts.appfont20
+                                      .copyWith(color: AppColors.maincolor2),
+                                  textAlign: TextAlign.center,
+                                ),
                         );
                       })),
                 )

@@ -45,7 +45,8 @@ class _InfoPageState extends State<InfoPage> {
               Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    color: AppColors.maincolor2,
+
+                    color: AppColors.maincolor2.withOpacity(0.7),
                     borderRadius: BorderRadius.circular(16)),
                 height: 380,
                 width: 300,
