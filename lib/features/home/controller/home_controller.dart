@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:climbing_english/core/classes/dictionary_api_url.dart';
 import 'package:climbing_english/core/model/word_model.dart';
 import 'package:climbing_english/features/word/view/word_page.dart';
@@ -44,8 +46,7 @@ abstract class _HomeControllerBase with Store {
       final apiURL = DictionaryApiUrl.url + randomWord;
       var response = await dio.get(apiURL);
       final json = response.data;
-      // final decodedJson = jsonDecode(json) as Map<String, dynamic>;
-      wordModel = WordModel.fromJson(json);
+      wordModel = WordModel.fromJson(json!);
       word = wordModel.word!;
       firstMeaning = wordModel.wordOfTheDayDefinition!;
       phonetic = wordModel.phonetic!;

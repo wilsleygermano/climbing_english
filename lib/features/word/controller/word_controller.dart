@@ -1,3 +1,4 @@
+import 'package:climbing_english/features/word/model/typed_word_model.dart';
 import 'package:climbing_english/core/model/word_model.dart';
 import 'package:climbing_english/features/word/model/searched_word_model.dart';
 import 'package:dio/dio.dart';
@@ -31,13 +32,11 @@ abstract class _WordControllerBase with Store {
     try {
       final dio = Dio();
       final apiURL = DictionaryApiUrl.url + wordTyped;
-      var response = await dio.get<List<Map<String, dynamic>>>(apiURL);
+      var response = await dio.get(apiURL);
       // Retorna uma lista de mapas. 
-      final json = response.data;
-      // final decodedJson = jsonDecode(json) as Map<String, dynamic>;
-      wordModel = WordModel.fromJson(json!);
-      apiDefinitions = json[0]["meanings"][0]["definitions"].map((map) => Definition.fromJson(map)).toList();
-
+      final json = List<Map<String, dynamic>>.from(response.data);
+      wordModel = WordModel.fromJson(json);
+      apiDefinitions = List<Definition>.from(json[0]["meanings"][0]["definitions"].map((map) => Definition.fromJson(map as Map<String, dynamic>)));
       word = wordModel.word!;
       phonetic = wordModel.phonetic!;
       pronounceURL = wordModel.phoneticUrl!;

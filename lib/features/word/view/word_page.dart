@@ -119,7 +119,7 @@ class _WordPageState extends State<WordPage> {
                               style: TextStyle(
                                 fontFamily: GoogleFonts.cormorant().fontFamily,
                                 fontSize: 18,
-                                color: AppColors.maincolor1,
+                                color: Colors.black,
                                 fontStyle: FontStyle.italic,
                               ),
                             ),
