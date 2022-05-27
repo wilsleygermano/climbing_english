@@ -131,7 +131,7 @@ class RegisterPage extends StatelessWidget {
                           onPressed: _controller.areCredentialsValid
                               ? () async {
                                   _controller.setButtonToLoadingState();
-                                  await _controller.createUser();
+                                  await _controller.createUser(context);
                                   if (_controller.areCredentialsValid ==
                                       false) {
                                     await showDialog(
