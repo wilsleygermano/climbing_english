@@ -29,6 +29,17 @@ mixin _$RankController on _RankControllerBase, Store {
       ActionController(name: '_RankControllerBase', context: context);
 
   @override
+  void setPercentValue(double newValue) {
+    final _$actionInfo = _$_RankControllerBaseActionController.startAction(
+        name: '_RankControllerBase.setPercentValue');
+    try {
+      return super.setPercentValue(newValue);
+    } finally {
+      _$_RankControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic currentProgressColor1() {
     final _$actionInfo = _$_RankControllerBaseActionController.startAction(
         name: '_RankControllerBase.currentProgressColor1');

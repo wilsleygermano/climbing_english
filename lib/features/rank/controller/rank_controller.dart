@@ -9,6 +9,9 @@ abstract class _RankControllerBase with Store {
   double percent = 0;
 
   @action
+  void setPercentValue(double newValue) => percent = newValue;
+
+  @action
   currentProgressColor1() {
     if (percent <= 0.25) {
       return AppColors.maincolor3;
@@ -36,17 +39,17 @@ abstract class _RankControllerBase with Store {
     }
   }
 
-@action
+  @action
   currentProgressColor5() {
     if (percent <= 0.91 && percent >= 0.95) {
       return percent;
     }
   }
-@action
+
+  @action
   currentProgressColor6() {
     if (percent == 1.0) {
       return percent;
     }
   }
-
 }
