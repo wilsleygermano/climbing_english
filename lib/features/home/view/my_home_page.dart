@@ -29,6 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     _controller.getWordOfTheDay();
+    _controller.checkIfAWordIsFavorited();
     super.initState();
   }
 
@@ -135,15 +136,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: AppColors.maincolor1,
                               ),
                             ),
-                            IconButton(
-                              onPressed: () async {
-                                await _controller.speakWord;
-                              },
-                              icon: Icon(
-                                Icons.favorite,
-                                color: AppColors.maincolor1,
-                              ),
-                            )
+                            Observer(builder: (_) {
+                              return IconButton(
+                                onPressed: () async {
+                                  await _controller.favoriteButtonPressed();
+                                },
+                                icon: _controller.isFavorited
+                                    ? Icon(
+                                        Icons.favorite,
+                                        color: AppColors.maincolor1,
+                                      )
+                                    : Icon(
+                                        Icons.favorite_outline,
+                                        color: AppColors.maincolor1,
+                                      ),
+                              );
+                            }),
                           ],
                         ),
                       ),

@@ -47,7 +47,8 @@ abstract class _WordControllerBase with Store {
 
   Future speakWord() async {
     await flutterTts.speak(word);
-    await flutterTts.awaitSpeakCompletion(true);
+    // await flutterTts.awaitSpeakCompletion(true);
+     await flutterTts.setQueueMode(1);
     await flutterTts.setLanguage("en-US");
   }
 
