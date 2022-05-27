@@ -9,6 +9,14 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HomeController on _HomeControllerBase, Store {
+  Computed<bool>? _$isTypedWordValidComputed;
+
+  @override
+  bool get isTypedWordValid => (_$isTypedWordValidComputed ??= Computed<bool>(
+          () => super.isTypedWordValid,
+          name: '_HomeControllerBase.isTypedWordValid'))
+      .value;
+
   late final _$wordAtom =
       Atom(name: '_HomeControllerBase.word', context: context);
 
@@ -130,6 +138,15 @@ mixin _$HomeController on _HomeControllerBase, Store {
         .run(() => super.searchWordTyped(context));
   }
 
+  late final _$wordOfTheDayTappedAsyncAction =
+      AsyncAction('_HomeControllerBase.wordOfTheDayTapped', context: context);
+
+  @override
+  Future<dynamic> wordOfTheDayTapped(BuildContext context) {
+    return _$wordOfTheDayTappedAsyncAction
+        .run(() => super.wordOfTheDayTapped(context));
+  }
+
   late final _$checkIfAWordIsFavoritedAsyncAction = AsyncAction(
       '_HomeControllerBase.checkIfAWordIsFavorited',
       context: context);
@@ -172,7 +189,8 @@ firstMeaning: ${firstMeaning},
 phonetic: ${phonetic},
 pronounceURL: ${pronounceURL},
 wordTyped: ${wordTyped},
-isFavorited: ${isFavorited}
+isFavorited: ${isFavorited},
+isTypedWordValid: ${isTypedWordValid}
     ''';
   }
 }

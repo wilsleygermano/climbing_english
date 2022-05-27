@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:climbing_english/core/classes/dictionary_api_url.dart';
 import 'package:climbing_english/core/model/word_model.dart';
 import 'package:climbing_english/features/word/view/word_page.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:english_words/english_words.dart';
@@ -63,12 +60,14 @@ abstract class _HomeControllerBase with Store {
   Future speakWord() async {
     await flutterTts.speak(word);
     await flutterTts.setQueueMode(1);
-    // await flutterTts.awaitSpeakCompletion(true);
     await flutterTts.setLanguage("en-US");
   }
 
   @observable
   String wordTyped = "";
+
+  @computed 
+  bool get isTypedWordValid => wordTyped.isNotEmpty && !wordTyped.contains(" ");
 
   @action
   void storeWordTyped(String newValue) {
@@ -84,6 +83,17 @@ abstract class _HomeControllerBase with Store {
       ),
     );
   }
+
+@action
+Future wordOfTheDayTapped(BuildContext context) async {
+  await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WordPage(wordTyped: word),
+      ),
+    );
+}
+
 
   @observable
   bool isFavorited = false;

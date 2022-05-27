@@ -1,4 +1,3 @@
-import 'package:climbing_english/features/word/model/typed_word_model.dart';
 import 'package:climbing_english/core/model/word_model.dart';
 import 'package:climbing_english/features/word/model/searched_word_model.dart';
 import 'package:dio/dio.dart';
