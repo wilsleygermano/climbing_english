@@ -1,6 +1,6 @@
 
 import 'package:climbing_english/core/widgets/custom_drawer.dart';
-import 'package:climbing_english/features/word/controller/word_controller.dart'
+import 'package:climbing_english/features/word/controller/word_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
