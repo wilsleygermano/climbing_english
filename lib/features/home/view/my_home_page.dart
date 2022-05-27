@@ -42,77 +42,77 @@ class _MyHomePageState extends State<MyHomePage> {
         iconTheme: IconThemeData(color: AppColors.maincolor3),
         backgroundColor: AppColors.maincolor2,
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 28),
-                child: Container(
-                  width: 272,
-                  height: 220,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("lib/assets/logo.png"),
-                        fit: BoxFit.fill),
-                  ),
+      body: Center(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 28),
+              child: Container(
+                width: 272,
+                height: 220,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("lib/assets/logo.png"),
+                      fit: BoxFit.fill),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 32.0,
-                  left: 18,
-                  right: 18,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 32.0,
+                left: 18,
+                right: 18,
+              ),
+              child: TextField(
+                onChanged: _controller.storeWordTyped,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppColors.maincolor1,
+                  fontFamily: GoogleFonts.lato().fontFamily,
+                  fontSize: 20,
                 ),
-                child: TextField(
-                  onChanged: _controller.storeWordTyped,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
+                decoration: InputDecoration(
+                  hintStyle: TextStyle(
                     color: AppColors.maincolor1,
                     fontFamily: GoogleFonts.lato().fontFamily,
                     fontSize: 20,
                   ),
-                  decoration: InputDecoration(
-                    hintStyle: TextStyle(
-                      color: AppColors.maincolor1,
-                      fontFamily: GoogleFonts.lato().fontFamily,
-                      fontSize: 20,
-                    ),
-                    hintText: "Type a Word",
-                    suffixIcon: IconButton(
-                      onPressed: () async {
-                        await _controller.searchWordTyped(context);
-                      },
-                      icon: Icon(
-                        Icons.search,
-                        color: AppColors.maincolor1,
-                      ),
-                    ),
-                    prefixIcon: Icon(
+                  hintText: "Type a Word",
+                  suffixIcon: IconButton(
+                    onPressed: () async {
+                      await _controller.searchWordTyped(context);
+                    },
+                    icon: Icon(
                       Icons.search,
-                      color: Colors.transparent,
+                      color: AppColors.maincolor1,
                     ),
-                    focusColor: AppColors.maincolor1,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: AppColors.maincolor3,
-                      ),
+                  ),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.transparent,
+                  ),
+                  focusColor: AppColors.maincolor1,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.maincolor3,
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(
-                        color: AppColors.maincolor3,
-                      ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: AppColors.maincolor3,
                     ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 76,
-                  left: 18,
-                  right: 18,
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 76,
+                left: 18,
+                right: 18,
+              ),
+              child: SingleChildScrollView(
                 child: Container(
                   height: 256,
                   decoration: BoxDecoration(
@@ -212,9 +212,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
