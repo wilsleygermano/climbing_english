@@ -42,95 +42,93 @@ class _WordPageState extends State<WordPage> {
           image: AssetImage("lib/assets/fundo.app.jpeg"),
         ),
       ),
-      child: SingleChildScrollView(
-        child: Scaffold(
-          drawer: CustomDrawer(),
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            iconTheme: IconThemeData(color: AppColors.maincolor3),
-            backgroundColor: AppColors.maincolor2,
-            title: Padding(
-              padding: const EdgeInsets.only(left: 88),
-              child: Container(
-                height: 56,
-                child: const Hero(
-                  tag: "climbing-english",
-                  child: Image(image: AssetImage("lib/assets/logo.png")),
-                ),
+      child: Scaffold(
+        drawer: CustomDrawer(),
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: AppColors.maincolor3),
+          backgroundColor: AppColors.maincolor2,
+          title: Padding(
+            padding: const EdgeInsets.only(left: 88),
+            child: Container(
+              height: 56,
+              child: const Hero(
+                tag: "climbing-english",
+                child: Image(image: AssetImage("lib/assets/logo.png")),
               ),
             ),
           ),
-          body: SingleChildScrollView(
-            child: Center(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 68.0, left: 36, right: 36),
-                    child: ListTile(
-                      title: Observer(builder: (_) {
-                        return Text(
-                          _controller.word.toTitleCase(),
-                          style: TextStyle(
-                            fontFamily: GoogleFonts.cormorant().fontFamily,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 32,
-                          ),
-                        );
-                      }),
-                      textColor: AppColors.maincolor2,
-                      tileColor: AppColors.maincolor3,
-                      trailing: IconButton(
-                        onPressed: _controller.speakWord,
-                        icon: Icon(
-                          Icons.volume_up,
-                          color: AppColors.maincolor2,
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 68.0, left: 36, right: 36),
+                  child: ListTile(
+                    title: Observer(builder: (_) {
+                      return Text(
+                        _controller.word.toTitleCase(),
+                        style: TextStyle(
+                          fontFamily: GoogleFonts.cormorant().fontFamily,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 32,
                         ),
+                      );
+                    }),
+                    textColor: AppColors.maincolor2,
+                    tileColor: AppColors.maincolor3,
+                    trailing: IconButton(
+                      onPressed: _controller.speakWord,
+                      icon: Icon(
+                        Icons.volume_up,
+                        color: AppColors.maincolor2,
                       ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
                     ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 32, left: 22, right: 22),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.68,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: Colors.black,
-                        ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 32, left: 22, right: 22),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.68,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.black,
                       ),
-                      child: Observer(builder: (_) {
-                        final definitions = _controller.definitions;
-                        return ListView.builder(
-                          itemCount: definitions.length,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return Flexible(
-                              child: Text(
-                                definitions[index].definition!,
-                                overflow: TextOverflow.visible,
-                                style: TextStyle(
-                                  fontFamily:
-                                      GoogleFonts.cormorant().fontFamily,
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontStyle: FontStyle.italic,
-                                ),
+                    ),
+                    child: Observer(builder: (_) {
+                      final definitions = _controller.definitions;
+                      return ListView.builder(
+                        itemCount: definitions.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Flexible(
+                            child: Text(
+                              definitions[index].definition!,
+                              overflow: TextOverflow.visible,
+                              style: TextStyle(
+                                fontFamily:
+                                    GoogleFonts.cormorant().fontFamily,
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontStyle: FontStyle.italic,
                               ),
-                            );
-                          },
-                        );
-                      }),
-                    ),
-                  )
-                ],
-              ),
+                            ),
+                          );
+                        },
+                      );
+                    }),
+                  ),
+                )
+              ],
             ),
           ),
         ),
