@@ -6,6 +6,7 @@ import 'package:climbing_english/features/about/view/info_page.dart';
 import 'package:climbing_english/features/favorite/view/favorite_page.dart';
 import 'package:climbing_english/features/home/view/my_home_page.dart';
 import 'package:climbing_english/features/login/view/login_page.dart';
+import 'package:climbing_english/features/rank/view/rank_page.dart';
 import 'package:climbing_english/features/word/view/word_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -125,6 +126,29 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                   builder: (context) => FavoritePage()));
                         },
                         child: Text("My Words",
+                            textAlign: TextAlign.center,
+                            style: AppFonts.appfont20
+                                .copyWith(color: AppColors.maincolor2))),
+                  ],
+                ),
+                                Row(
+                  children: [
+                    const SizedBox(width: 30),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("lib/assets/floco.menu.png"))),
+                    ),
+                    TextButton(
+                        onPressed: () async {
+                          await Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RankPage()));
+                        },
+                        child: Text("Ranking",
                             textAlign: TextAlign.center,
                             style: AppFonts.appfont20
                                 .copyWith(color: AppColors.maincolor2))),
