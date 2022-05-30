@@ -48,9 +48,6 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(
-                height: 15,
-              ),
               Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
