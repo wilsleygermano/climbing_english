@@ -1,4 +1,5 @@
 import 'package:climbing_english/core/widgets/custom_dialog.dart';
+import 'package:climbing_english/features/favorite/controller/favorite_controller.dart';
 import 'package:climbing_english/features/favorite/model/favorite_words_model.dart';
 import 'package:climbing_english/features/home/view/my_home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,7 +21,6 @@ class FavoritePage extends StatefulWidget {
   State<FavoritePage> createState() => _FavoritePageState();
 }
 
-
 extension StringCasingExtension on String {
   String toCapitalized2() =>
       length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
@@ -31,7 +31,8 @@ extension StringCasingExtension on String {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  var dataBase = FirebaseFirestore.instance;
+  final _controller = FavoriteController();
+
   late bool isFavorited;
   FlutterTts flutterTts = FlutterTts();
 
@@ -42,20 +43,6 @@ class _FavoritePageState extends State<FavoritePage> {
     isFavorited = true;
     super.initState();
     _uId = FirebaseAuth.instance.currentUser!.uid;
-  }
-
-  Stream<List<FavoriteWordsModel>> getFavoriteWords() async* {
-    List<FavoriteWordsModel> favoriteWords = [];
-    final words = await FirebaseFirestore.instance
-        .collection("Users")
-        .doc(_uId)
-        .collection("favorite_words")
-        .get();
-
-    favoriteWords =
-        words.docs.map((e) => FavoriteWordsModel.fromJson(e.data())).toList();
-
-    yield favoriteWords;
   }
 
   @override
@@ -105,7 +92,7 @@ class _FavoritePageState extends State<FavoritePage> {
                     right: 18,
                   ),
                   child: StreamBuilder<List<FavoriteWordsModel>>(
-                    stream: getFavoriteWords(),
+                    stream: _controller.getFavoriteWords(_uId),
                     builder: ((context, snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(
@@ -115,128 +102,7 @@ class _FavoritePageState extends State<FavoritePage> {
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 16.0),
-                              child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => WordPage(
-                                          wordTyped:
-                                              snapshot.data![index].word!),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  height: 256,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
-                                      color: AppColors.maincolor3,
-                                    ),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 23, left: 18),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            IconButton(
-                                              onPressed: () async {
-                                                await dataBase
-                                                    .collection("Users")
-                                                    .doc(_uId)
-                                                    .collection(
-                                                        "favorite_words")
-                                                    .doc(snapshot
-                                                        .data![index].word!)
-                                                    .delete();
-                                                    setState(() {
-                                                      getFavoriteWords();
-                                                    });
-                                              },
-                                              icon: isFavorited
-                                                  ? Icon(
-                                                      Icons.favorite,
-                                                      color:
-                                                          AppColors.maincolor1,
-                                                    )
-                                                  : Icon(
-                                                      Icons.favorite_outline,
-                                                      color:
-                                                          AppColors.maincolor1,
-                                                    ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 8,
-                                          left: 18,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              snapshot.data![index].word!
-                                                  .toTitleCase2(),
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    GoogleFonts.cormorant()
-                                                        .fontFamily,
-                                                fontSize: 26,
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.maincolor1,
-                                              ),
-                                            ),
-                                            IconButton(
-                                              onPressed: () async {
-                                                await await flutterTts.speak(
-                                                    snapshot
-                                                        .data![index].word!);
-                                                await flutterTts
-                                                    .setQueueMode(1);
-                                                await flutterTts
-                                                    .setLanguage("en-US");
-                                              },
-                                              icon: Icon(
-                                                Icons.volume_up,
-                                                color: AppColors.maincolor1,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 8,
-                                          left: 18,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Flexible(
-                                              child: Text(
-                                                snapshot.data![index].meaning!,
-                                                overflow: TextOverflow.visible,
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                      GoogleFonts.cormorant()
-                                                          .fontFamily,
-                                                  fontSize: 18,
-                                                  color: AppColors.maincolor1,
-                                                  fontStyle: FontStyle.italic,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              child: 
                             );
                           },
                         );
