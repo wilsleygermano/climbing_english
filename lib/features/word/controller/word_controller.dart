@@ -53,7 +53,7 @@ abstract class _WordControllerBase with Store {
       pronounceURL = wordModel.phoneticUrl!;
       definitions = apiDefinitions;
     } on DioError catch (e) {
-      word = "Houve um erro: ${e.error}";
+      word = "There was an error";
       phonetic = "Houve um erro: ${e.error}";
       pronounceURL = "Houve um erro: ${e.error}";
     }
