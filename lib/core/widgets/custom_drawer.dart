@@ -31,7 +31,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             BackdropFilter(
               filter: ImageFilter.blur(),
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("lib/assets/drawer.png"),
                       fit: BoxFit.fill,
@@ -39,71 +39,122 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 29),
-              child: Column(
-                children: [
-                  SizedBox(height: 80),
-                  Container(
-                    height: 120,
-                    width: 120,
-                    decoration: BoxDecoration(
-                        color: AppColors.maincolor2,
-                        image: DecorationImage(
-                            image: AssetImage('lib/assets/logo.png'),
-                            fit: BoxFit.contain),
-                        shape: BoxShape.circle),
-                  ),
-                  SizedBox(
-                    height: 90,
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => InfoPage()));
-                      },
-                      child: Text("About",
-                          textAlign: TextAlign.center,
-                          style: AppFonts.appfont20
-                              .copyWith(color: AppColors.maincolor2))),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MyHomePage()));
-                      },
-                      child: Text("Home",
-                          textAlign: TextAlign.center,
-                          style: AppFonts.appfont20
-                              .copyWith(color: AppColors.maincolor2))),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FavoritePage()));
-                      },
-                      child: Text("My Words",
-                          textAlign: TextAlign.center,
-                          style: AppFonts.appfont20
-                              .copyWith(color: AppColors.maincolor2))),
-                  TextButton(
-                      onPressed: () async {
-                        await FirebaseAuth.instance.signOut();
-                        await Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()));
-                      },
-                      child: Text("Logout",
-                          textAlign: TextAlign.center,
-                          style: AppFonts.appfont20
-                              .copyWith(color: AppColors.maincolor2))),
-                ],
-              ),
+            Column(
+              children: [
+                const SizedBox(height: 80),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 40),
+                    Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          color: AppColors.maincolor2,
+                          image: const DecorationImage(
+                              image: AssetImage('lib/assets/logo.png'),
+                              fit: BoxFit.contain),
+                          shape: BoxShape.circle),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 90,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 30),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("lib/assets/floco.menu.png"))),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => InfoPage()));
+                        },
+                        child: Text("About",
+                            textAlign: TextAlign.center,
+                            style: AppFonts.appfont20
+                                .copyWith(color: AppColors.maincolor2))),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 30),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("lib/assets/floco.menu.png"))),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyHomePage()));
+                        },
+                        child: Text("Home",
+                            textAlign: TextAlign.center,
+                            style: AppFonts.appfont20
+                                .copyWith(color: AppColors.maincolor2))),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 30),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("lib/assets/floco.menu.png"))),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FavoritePage()));
+                        },
+                        child: Text("My Words",
+                            textAlign: TextAlign.center,
+                            style: AppFonts.appfont20
+                                .copyWith(color: AppColors.maincolor2))),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 30),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("lib/assets/floco.menu.png"))),
+                    ),
+                    TextButton(
+                        onPressed: () async {
+                          await FirebaseAuth.instance.signOut();
+                          await Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()));
+                        },
+                        child: Text("Logout",
+                            textAlign: TextAlign.center,
+                            style: AppFonts.appfont20
+                                .copyWith(color: AppColors.maincolor2))),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
