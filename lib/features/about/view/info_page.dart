@@ -66,7 +66,7 @@ class _InfoPageState extends State<InfoPage> {
                       ),
                     ),
                     Text(
-                      "Wisley Germano and",
+                      "Wilsley Germano and",
                       textAlign: TextAlign.center,
                       style: AppFonts.textfont26.copyWith(
                         color: AppColors.textcolor,
