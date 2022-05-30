@@ -1,10 +1,13 @@
 import 'package:climbing_english/core/widgets/app_colors.dart';
+import 'package:climbing_english/core/widgets/app_fonts.dart';
 import 'package:climbing_english/core/widgets/custom_drawer.dart';
 import 'package:climbing_english/features/home/controller/home_controller.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -46,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 28),
@@ -118,118 +122,130 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 76,
-                left: 18,
-                right: 18,
-              ),
-              child: SingleChildScrollView(
-                child: InkWell(
-                  onTap: () async {
-                    await _controller.wordOfTheDayTapped(context);
-                  },
-                  child: Container(
-                    height: 256,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: AppColors.maincolor3,
-                      ),
+            Stack(
+              children: <Widget> [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 50,
+                  left: 18,
+                  right: 18,
+                ),
+                child: FlipCard(
+                  flipOnTouch: true,
+                  front: SizedBox(
+                    height: 240,
+                    child: Lottie.network(
+                      "https://assets6.lottiefiles.com/packages/lf20_12cye8ob.json",
                     ),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 23, left: 18),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Word of the day:",
-                                style: TextStyle(
-                                  fontFamily: GoogleFonts.lato().fontFamily,
-                                  fontSize: 18,
-                                  color: AppColors.maincolor1,
-                                ),
-                              ),
-                              Observer(builder: (_) {
-                                return IconButton(
-                                  onPressed: () async {
-                                    await _controller.favoriteButtonPressed();
-                                  },
-                                  icon: _controller.isFavorited
-                                      ? Icon(
-                                          Icons.favorite,
-                                          color: AppColors.maincolor1,
-                                        )
-                                      : Icon(
-                                          Icons.favorite_outline,
-                                          color: AppColors.maincolor1,
-                                        ),
-                                );
-                              }),
-                            ],
-                          ),
+                  ),
+                  back: InkWell(
+                    onTap: () async {
+                      await _controller.wordOfTheDayTapped(context);
+                    },
+                    child: Container(
+                      height: 256,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: AppColors.maincolor3,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 8,
-                            left: 18,
-                          ),
-                          child: Row(
-                            children: [
-                              Observer(builder: (_) {
-                                return Text(
-                                  _controller.word.toTitleCase(),
+                      ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 23, left: 18),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Word of the day:",
                                   style: TextStyle(
-                                    fontFamily:
-                                        GoogleFonts.cormorant().fontFamily,
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.bold,
+                                    fontFamily: GoogleFonts.lato().fontFamily,
+                                    fontSize: 18,
                                     color: AppColors.maincolor1,
                                   ),
-                                );
-                              }),
-                              IconButton(
-                                onPressed: _controller.speakWord,
-                                icon: Icon(
-                                  Icons.volume_up,
-                                  color: AppColors.maincolor1,
                                 ),
-                              ),
-                            ],
+                                Observer(builder: (_) {
+                                  return IconButton(
+                                    onPressed: () async {
+                                      await _controller.favoriteButtonPressed();
+                                    },
+                                    icon: _controller.isFavorited
+                                        ? Icon(
+                                            Icons.favorite,
+                                            color: AppColors.maincolor1,
+                                          )
+                                        : Icon(
+                                            Icons.favorite_outline,
+                                            color: AppColors.maincolor1,
+                                          ),
+                                  );
+                                }),
+                              ],
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 8,
-                            left: 18,
-                          ),
-                          child: Row(
-                            children: [
-                              Flexible(
-                                child: Observer(builder: (_) {
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              left: 18,
+                            ),
+                            child: Row(
+                              children: [
+                                Observer(builder: (_) {
                                   return Text(
-                                    _controller.firstMeaning,
-                                    overflow: TextOverflow.visible,
+                                    _controller.word.toTitleCase(),
                                     style: TextStyle(
                                       fontFamily:
                                           GoogleFonts.cormorant().fontFamily,
-                                      fontSize: 18,
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold,
                                       color: AppColors.maincolor1,
-                                      fontStyle: FontStyle.italic,
                                     ),
                                   );
                                 }),
-                              ),
-                            ],
+                                IconButton(
+                                  onPressed: _controller.speakWord,
+                                  icon: Icon(
+                                    Icons.volume_up,
+                                    color: AppColors.maincolor1,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              left: 18,
+                            ),
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  child: Observer(builder: (_) {
+                                    return Text(
+                                      _controller.firstMeaning,
+                                      overflow: TextOverflow.visible,
+                                      style: TextStyle(
+                                        fontFamily:
+                                            GoogleFonts.cormorant().fontFamily,
+                                        fontSize: 18,
+                                        color: AppColors.maincolor1,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                    );
+                                  }),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
+              ],
+
             )
           ],
         ),

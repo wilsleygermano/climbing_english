@@ -9,6 +9,22 @@ part of 'word_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$WordController on _WordControllerBase, Store {
+  late final _$firstMeaningAtom =
+      Atom(name: '_WordControllerBase.firstMeaning', context: context);
+
+  @override
+  String get firstMeaning {
+    _$firstMeaningAtom.reportRead();
+    return super.firstMeaning;
+  }
+
+  @override
+  set firstMeaning(String value) {
+    _$firstMeaningAtom.reportWrite(value, super.firstMeaning, () {
+      super.firstMeaning = value;
+    });
+  }
+
   late final _$wordAtom =
       Atom(name: '_WordControllerBase.word', context: context);
 
@@ -73,6 +89,22 @@ mixin _$WordController on _WordControllerBase, Store {
     });
   }
 
+  late final _$isFavoritedAtom =
+      Atom(name: '_WordControllerBase.isFavorited', context: context);
+
+  @override
+  bool get isFavorited {
+    _$isFavoritedAtom.reportRead();
+    return super.isFavorited;
+  }
+
+  @override
+  set isFavorited(bool value) {
+    _$isFavoritedAtom.reportWrite(value, super.isFavorited, () {
+      super.isFavorited = value;
+    });
+  }
+
   late final _$getWordTypedAsyncAction =
       AsyncAction('_WordControllerBase.getWordTyped', context: context);
 
@@ -81,13 +113,35 @@ mixin _$WordController on _WordControllerBase, Store {
     return _$getWordTypedAsyncAction.run(() => super.getWordTyped(wordTyped));
   }
 
+  late final _$checkIfAWordIsFavoritedAsyncAction = AsyncAction(
+      '_WordControllerBase.checkIfAWordIsFavorited',
+      context: context);
+
+  @override
+  Future<dynamic> checkIfAWordIsFavorited(String wordCheck) {
+    return _$checkIfAWordIsFavoritedAsyncAction
+        .run(() => super.checkIfAWordIsFavorited(wordCheck));
+  }
+
+  late final _$favoriteButtonPressedAsyncAction = AsyncAction(
+      '_WordControllerBase.favoriteButtonPressed',
+      context: context);
+
+  @override
+  Future<dynamic> favoriteButtonPressed() {
+    return _$favoriteButtonPressedAsyncAction
+        .run(() => super.favoriteButtonPressed());
+  }
+
   @override
   String toString() {
     return '''
+firstMeaning: ${firstMeaning},
 word: ${word},
 phonetic: ${phonetic},
 pronounceURL: ${pronounceURL},
-definitions: ${definitions}
+definitions: ${definitions},
+isFavorited: ${isFavorited}
     ''';
   }
 }

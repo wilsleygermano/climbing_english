@@ -31,7 +31,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             BackdropFilter(
               filter: ImageFilter.blur(),
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("lib/assets/drawer.png"),
                       fit: BoxFit.fill,
@@ -41,29 +41,35 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             Column(
               children: [
-                SizedBox(height: 80),
-                Container(
-                  height: 120,
-                  width: 120,
-                  decoration: BoxDecoration(
-                      color: AppColors.maincolor2,
-                      image: DecorationImage(
-                          image: AssetImage('lib/assets/logo.png'),
-                          fit: BoxFit.contain),
-                      shape: BoxShape.circle),
+                const SizedBox(height: 80),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 40),
+                    Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          color: AppColors.maincolor2,
+                          image: const DecorationImage(
+                              image: AssetImage('lib/assets/logo.png'),
+                              fit: BoxFit.contain),
+                          shape: BoxShape.circle),
+                    ),
+                  ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 90,
                 ),
                 Row(
                   children: [
+                    const SizedBox(width: 30),
                     Container(
                       height: 50,
                       width: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image:
-                                  AssetImage("lib/assets/floco.menu.png"))),
+                              image: AssetImage("lib/assets/floco.menu.png"))),
                     ),
                     TextButton(
                         onPressed: () {
@@ -80,13 +86,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 Row(
                   children: [
+                    const SizedBox(width: 30),
                     Container(
                       height: 50,
                       width: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image:
-                                  AssetImage("lib/assets/floco.menu.png"))),
+                              image: AssetImage("lib/assets/floco.menu.png"))),
                     ),
                     TextButton(
                         onPressed: () {
@@ -103,13 +109,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 Row(
                   children: [
+                    const SizedBox(width: 30),
                     Container(
                       height: 50,
                       width: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image:
-                                  AssetImage("lib/assets/floco.menu.png"))),
+                              image: AssetImage("lib/assets/floco.menu.png"))),
                     ),
                     TextButton(
                         onPressed: () {
@@ -126,13 +132,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 Row(
                   children: [
+                    const SizedBox(width: 30),
                     Container(
                       height: 50,
                       width: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image:
-                                  AssetImage("lib/assets/floco.menu.png"))),
+                              image: AssetImage("lib/assets/floco.menu.png"))),
                     ),
                     TextButton(
                         onPressed: () async {

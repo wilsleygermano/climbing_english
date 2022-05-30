@@ -30,6 +30,7 @@ class _WordPageState extends State<WordPage> {
   @override
   void initState() {
     _controller.getWordTyped(widget.wordTyped);
+    _controller.checkIfAWordIsFavorited(widget.wordTyped);
     super.initState();
   }
 
@@ -70,6 +71,22 @@ class _WordPageState extends State<WordPage> {
                   padding:
                       const EdgeInsets.only(top: 68.0, left: 36, right: 36),
                   child: ListTile(
+                    leading: Observer(builder: (_) {
+                      return IconButton(
+                        onPressed: () async {
+                          await _controller.favoriteButtonPressed();
+                        },
+                        icon: _controller.isFavorited
+                            ? Icon(
+                                Icons.favorite,
+                                color: AppColors.maincolor1,
+                              )
+                            : Icon(
+                                Icons.favorite_outline,
+                                color: AppColors.maincolor1,
+                              ),
+                      );
+                    }),
                     title: Observer(builder: (_) {
                       return Padding(
                         padding: const EdgeInsets.only(left: 28.0),
