@@ -47,77 +47,80 @@ class _FavoriteCardModelState extends State<FavoriteCardModel> {
             color: AppColors.maincolor3,
           ),
         ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 23, left: 18),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    onPressed: widget.favoriteButtonPressed,
-                    icon: widget.isFavorited
-                        ? Icon(
-                            Icons.favorite,
-                            color: AppColors.maincolor1,
-                          )
-                        : Icon(
-                            Icons.favorite_outline,
-                            color: AppColors.maincolor1,
-                          ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 8,
-                left: 18,
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    widget.word,
-                    style: TextStyle(
-                      fontFamily: GoogleFonts.cormorant().fontFamily,
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.maincolor1,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 23, left: 18),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: widget.favoriteButtonPressed,
+                      icon: widget.isFavorited
+                          ? Icon(
+                              Icons.favorite,
+                              color: AppColors.maincolor1,
+                            )
+                          : Icon(
+                              Icons.favorite_outline,
+                              color: AppColors.maincolor1,
+                            ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: widget.speakButtonPressed,
-                    icon: Icon(
-                      Icons.volume_up,
-                      color: AppColors.maincolor1,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 8,
-                left: 18,
-              ),
-              child: Row(
-                children: [
-                  Flexible(
-                    child: Text(
-                      widget.meaning,
-                      overflow: TextOverflow.visible,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 8,
+                  left: 18,
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      widget.word,
                       style: TextStyle(
                         fontFamily: GoogleFonts.cormorant().fontFamily,
-                        fontSize: 18,
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
                         color: AppColors.maincolor1,
-                        fontStyle: FontStyle.italic,
                       ),
                     ),
-                  ),
-                ],
+                    IconButton(
+                      onPressed: widget.speakButtonPressed,
+                      icon: Icon(
+                        Icons.volume_up,
+                        color: AppColors.maincolor1,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 8,
+                  left: 18,
+                ),
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Text(
+                        widget.meaning,
+                        overflow: TextOverflow.visible,
+                        style: TextStyle(
+                          fontFamily: GoogleFonts.cormorant().fontFamily,
+                          fontSize: 18,
+                          color: AppColors.maincolor1,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

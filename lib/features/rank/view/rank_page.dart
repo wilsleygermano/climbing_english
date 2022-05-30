@@ -99,7 +99,7 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
                             await _controller
                                 .showUserTotalFavoriteWordsDialog(context);
                           },
-                          text: "+100 Words"),
+                          text: "100+ Words"),
                       const SizedBox(height: 140),
                       ButtomModel(
                           onPressed: () async {

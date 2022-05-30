@@ -125,7 +125,7 @@ class _FavoritePageState extends State<FavoritePage> {
                       }
                       if (!snapshot.hasData) {
                         return const Center(
-                          child: Text("You do not have favorite words yet"),
+                          child: Text("You don't have favorite words yet"),
                         );
                       }
                       return const Center(
