@@ -58,11 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
               style: AppFonts.textinfo.copyWith(color: AppColors.maincolor3),
             ),
             MyLogo(),
-                        Text(
-              "Your Pocket Dictionary!",
-              textAlign: TextAlign.center,
-              style: AppFonts.textinfo2.copyWith(color: AppColors.maincolor3),
-            ),
             Padding(
               padding: const EdgeInsets.only(
                 top: 14.0,
