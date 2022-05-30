@@ -140,13 +140,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 "Tap the Image to Discover the",
                 style:
-                    AppFonts.textfont22.copyWith(color: AppColors.maincolor3),
+                    AppFonts.textfont22.copyWith(color: AppColors.maincolor3, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               Text(
                 "Word of the Day",
                 style:
-                    AppFonts.textfont22.copyWith(color: AppColors.maincolor3),
+                    AppFonts.textfont22.copyWith(color: AppColors.maincolor3, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               Stack(

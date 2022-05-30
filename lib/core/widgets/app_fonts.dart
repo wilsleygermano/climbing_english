@@ -10,5 +10,5 @@ class AppFonts {
   static TextStyle textfont26 = GoogleFonts.cormorant(fontSize: 26);
   static TextStyle textfont32 = GoogleFonts.cormorant(fontSize: 32);
   static TextStyle textinfo = GoogleFonts.righteous(fontSize: 32);
-  static TextStyle textinfo2 = GoogleFonts.righteous(fontSize: 24);
+  static TextStyle textinfo2 = GoogleFonts.righteous(fontSize: 20);
 }
