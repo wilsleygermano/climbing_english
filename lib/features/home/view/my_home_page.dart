@@ -52,10 +52,20 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Text(
+              "Welcome to",
+              textAlign: TextAlign.center,
+              style: AppFonts.textinfo.copyWith(color: AppColors.maincolor3),
+            ),
             MyLogo(),
+                        Text(
+              "Your Pocket Dictionary!",
+              textAlign: TextAlign.center,
+              style: AppFonts.textinfo2.copyWith(color: AppColors.maincolor3),
+            ),
             Padding(
               padding: const EdgeInsets.only(
-                top: 32.0,
+                top: 14.0,
                 left: 18,
                 right: 18,
               ),
@@ -117,14 +127,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               "Tap the Image to Discover the",
-              style:
-                  AppFonts.textfont22.copyWith(color: AppColors.maincolor3, fontWeight: FontWeight.bold),
+              style: AppFonts.textfont22.copyWith(
+                  color: AppColors.maincolor3, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             Text(
               "Word of the Day",
-              style:
-                  AppFonts.textfont22.copyWith(color: AppColors.maincolor3, fontWeight: FontWeight.bold),
+              style: AppFonts.textfont22.copyWith(
+                  color: AppColors.maincolor3, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             Stack(
@@ -157,8 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Column(
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 23, left: 18),
+                              padding: const EdgeInsets.only(top: 23, left: 18),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -166,8 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Text(
                                     "Word of the day:",
                                     style: TextStyle(
-                                      fontFamily:
-                                          GoogleFonts.lato().fontFamily,
+                                      fontFamily: GoogleFonts.lato().fontFamily,
                                       fontSize: 18,
                                       color: AppColors.maincolor1,
                                     ),
@@ -203,8 +211,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     return Text(
                                       _controller.word.toTitleCase(),
                                       style: TextStyle(
-                                        fontFamily: GoogleFonts.cormorant()
-                                            .fontFamily,
+                                        fontFamily:
+                                            GoogleFonts.cormorant().fontFamily,
                                         fontSize: 26,
                                         fontWeight: FontWeight.bold,
                                         color: AppColors.maincolor1,
