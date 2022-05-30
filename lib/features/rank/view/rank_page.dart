@@ -19,6 +19,12 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
   final _controller = RankController();
 
   @override
+  void initState() {
+    _controller.countUserFavoriteWords();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
@@ -91,23 +97,17 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
                 children: [
                   Column(
                     children: [
-                      ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(1);
-                          },
-                          text: "+1500 Words"),
+                      ButtomModel(onPressed: () async {
+                        await _controller.showUserTotalFavoriteWordsDialog(context);
+                      }, text: "+100 Words"),
                       const SizedBox(height: 140),
-                      ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.70);
-                          },
-                          text: "600 Words"),
+                      ButtomModel(onPressed: () async {
+                        await _controller.showUserTotalFavoriteWordsDialog(context);
+                      }, text: "40+ Words"),
                       const SizedBox(height: 110),
-                      ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.25);
-                          },
-                          text: "200 Words"),
+                      ButtomModel(onPressed: () async {
+                        await _controller.showUserTotalFavoriteWordsDialog(context);
+                      }, text: "20+ Words"),
                       const SizedBox(height: 90)
                     ],
                   ),
@@ -132,23 +132,17 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
                   Column(
                     children: [
                       const SizedBox(height: 80),
-                      ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.85);
-                          },
-                          text: "900 Words"),
+                      ButtomModel(onPressed: () async {
+                        
+                      }, text: "50+ Words"),
                       const SizedBox(height: 120),
-                      ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.50);
-                          },
-                          text: "300 Words"),
+                      ButtomModel(onPressed: () async {
+                        
+                      }, text: "30+ Words"),
                       const SizedBox(height: 150),
-                      ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.15);
-                          },
-                          text: "100 Words"),
+                      ButtomModel(onPressed: () async {
+                        
+                      }, text: "10 Words"),
                       const SizedBox(
                         height: 10,
                       )

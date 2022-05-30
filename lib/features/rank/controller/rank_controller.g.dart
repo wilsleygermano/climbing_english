@@ -25,6 +25,32 @@ mixin _$RankController on _RankControllerBase, Store {
     });
   }
 
+  late final _$totalWordsAtom =
+      Atom(name: '_RankControllerBase.totalWords', context: context);
+
+  @override
+  int get totalWords {
+    _$totalWordsAtom.reportRead();
+    return super.totalWords;
+  }
+
+  @override
+  set totalWords(int value) {
+    _$totalWordsAtom.reportWrite(value, super.totalWords, () {
+      super.totalWords = value;
+    });
+  }
+
+  late final _$countUserFavoriteWordsAsyncAction = AsyncAction(
+      '_RankControllerBase.countUserFavoriteWords',
+      context: context);
+
+  @override
+  Future<dynamic> countUserFavoriteWords() {
+    return _$countUserFavoriteWordsAsyncAction
+        .run(() => super.countUserFavoriteWords());
+  }
+
   late final _$_RankControllerBaseActionController =
       ActionController(name: '_RankControllerBase', context: context);
 
@@ -108,7 +134,8 @@ mixin _$RankController on _RankControllerBase, Store {
   @override
   String toString() {
     return '''
-percent: ${percent}
+percent: ${percent},
+totalWords: ${totalWords}
     ''';
   }
 }
