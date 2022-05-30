@@ -1,18 +1,15 @@
 import 'package:climbing_english/core/widgets/custom_dialog.dart';
+import 'package:climbing_english/core/widgets/my_logo.dart';
 import 'package:climbing_english/features/favorite/controller/favorite_controller.dart';
+import 'package:climbing_english/features/favorite/model/favorite_card_model.dart';
 import 'package:climbing_english/features/favorite/model/favorite_words_model.dart';
 import 'package:climbing_english/features/home/view/my_home_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../core/widgets/app_colors.dart';
 import '../../../core/widgets/app_fonts.dart';
 import '../../../core/widgets/custom_drawer.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-
-import '../../word/view/word_page.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -60,18 +57,7 @@ class _FavoritePageState extends State<FavoritePage> {
           child: Center(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 28),
-                  child: Container(
-                    width: 272,
-                    height: 220,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("lib/assets/logo.png"),
-                          fit: BoxFit.fill),
-                    ),
-                  ),
-                ),
+                MyLogo(),
                 Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -101,9 +87,25 @@ class _FavoritePageState extends State<FavoritePage> {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.only(bottom: 16.0),
-                              child: 
-                            );
+                                padding: const EdgeInsets.only(bottom: 16.0),
+                                child: FavoriteCardModel(
+                                    favoriteWordChoosedToShown:
+                                        snapshot.data![index].word!,
+                                    favoriteButtonPressed: () async {
+                                      await _controller.deleteFavorite(
+                                          _uId, snapshot.data![index].word!);
+                                      setState(() {
+                                        _controller.getFavoriteWords(_uId);
+                                      });
+                                    },
+                                    isFavorited: isFavorited,
+                                    word: snapshot.data![index].word!
+                                        .toTitleCase2(),
+                                    speakButtonPressed: () async {
+                                      await _controller.speakWord(
+                                          snapshot.data![index].word!);
+                                    },
+                                    meaning: snapshot.data![index].meaning!));
                           },
                         );
                       }
@@ -122,7 +124,9 @@ class _FavoritePageState extends State<FavoritePage> {
                         );
                       }
                       if (!snapshot.hasData) {
-                        return Text("You do not have favorite words yet");
+                        return const Center(
+                          child: Text("You do not have favorite words yet"),
+                        );
                       }
                       return const Center(
                         child: CircularProgressIndicator(

@@ -7,9 +7,19 @@ class FavoriteCardModel extends StatefulWidget {
   final String favoriteWordChoosedToShown;
   final Function() favoriteButtonPressed;
   final bool isFavorited;
-  final String word
+  final String word;
+  final Function() speakButtonPressed;
+  final String meaning;
 
-  const FavoriteCardModel({Key? key}) : super(key: key);
+  const FavoriteCardModel(
+      {Key? key,
+      required this.favoriteWordChoosedToShown,
+      required this.favoriteButtonPressed,
+      required this.isFavorited,
+      required this.word,
+      required this.speakButtonPressed,
+      required this.meaning})
+      : super(key: key);
 
   @override
   State<FavoriteCardModel> createState() => _FavoriteCardModelState();
@@ -67,7 +77,7 @@ class _FavoriteCardModelState extends State<FavoriteCardModel> {
               child: Row(
                 children: [
                   Text(
-                    snapshot.data![index].word!.toTitleCase2(),
+                    widget.word,
                     style: TextStyle(
                       fontFamily: GoogleFonts.cormorant().fontFamily,
                       fontSize: 26,
@@ -76,9 +86,7 @@ class _FavoriteCardModelState extends State<FavoriteCardModel> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () async {
-                      await _controller.speakWord(snapshot.data![index].word!);
-                    },
+                    onPressed: widget.speakButtonPressed,
                     icon: Icon(
                       Icons.volume_up,
                       color: AppColors.maincolor1,
@@ -96,7 +104,7 @@ class _FavoriteCardModelState extends State<FavoriteCardModel> {
                 children: [
                   Flexible(
                     child: Text(
-                      snapshot.data![index].meaning!,
+                      widget.meaning,
                       overflow: TextOverflow.visible,
                       style: TextStyle(
                         fontFamily: GoogleFonts.cormorant().fontFamily,
