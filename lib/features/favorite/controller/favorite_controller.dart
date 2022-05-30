@@ -1,19 +1,14 @@
 import 'package:climbing_english/features/favorite/model/favorite_words_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class FavoriteController {
-  var uId = FirebaseAuth.instance.currentUser!.uid;
-
-  List<FavoriteWordsModel> favoriteWords = [];
-
-
-  var dataBase = FirebaseFirestore.instance;
-
-  Stream<List<FavoriteWordsModel>> getFavoriteWords() async* {
+  Stream<List<FavoriteWordsModel>> getFavoriteWords(String docId) async* {
+    List<FavoriteWordsModel> favoriteWords = [];
     final words = await FirebaseFirestore.instance
         .collection("Users")
-        .doc(uId)
+        .doc(docId)
         .collection("favorite_words")
         .get();
 
@@ -23,29 +18,21 @@ class FavoriteController {
     yield favoriteWords;
   }
 
+  Future deleteFavorite(String docId, String docName) async {
+    var dataBase = FirebaseFirestore.instance;
 
- Future favoriteButtonPressed(String word, bool isFavorited) async {
-    await dataBase.collection("Users").doc(uId).set({'id': uId});
-
-    final docRef = await dataBase
+    await dataBase
         .collection("Users")
-        .doc(uId)
+        .doc(docId)
         .collection("favorite_words")
-        .doc(word)
-        .get()
-        .then((value) => value.exists);
-
-    if (docRef == true) {
-      return [
-        await dataBase
-            .collection("Users")
-            .doc(uId)
-            .collection("favorite_words")
-            .doc(word)
-            .delete(),
-        isFavorited = false
-      ];
-    }
+        .doc(docName)
+        .delete();
   }
 
+  Future speakWord(String word) async {
+    FlutterTts flutterTts = FlutterTts();
+    await flutterTts.speak(word);
+    await flutterTts.setQueueMode(1);
+    await flutterTts.setLanguage("en-US");
+  }
 }
