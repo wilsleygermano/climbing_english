@@ -131,7 +131,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                 .copyWith(color: AppColors.maincolor2))),
                   ],
                 ),
-                                Row(
+                Row(
                   children: [
                     const SizedBox(width: 30),
                     Container(

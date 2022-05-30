@@ -19,6 +19,12 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
   final _controller = RankController();
 
   @override
+  void initState() {
+    _controller.countUserFavoriteWords();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
@@ -64,7 +70,7 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
               const SizedBox(
                 height: 15,
               ),
-              Text("We Need to See you Growing Up.",
+              Text('We Need to See you "Climbing Up".',
                   textAlign: TextAlign.center,
                   style: AppFonts.textfont18.copyWith(
                       color: AppColors.textcolor,
@@ -89,22 +95,25 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
                   Column(
                     children: [
                       ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(1);
+                          onPressed: () async {
+                            await _controller
+                                .showUserTotalFavoriteWordsDialog(context);
                           },
-                          text: "+1500 Words"),
+                          text: "+100 Words"),
                       const SizedBox(height: 140),
                       ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.70);
+                          onPressed: () async {
+                            await _controller
+                                .showUserTotalFavoriteWordsDialog(context);
                           },
-                          text: "600 Words"),
+                          text: "40+ Words"),
                       const SizedBox(height: 110),
                       ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.25);
+                          onPressed: () async {
+                            await _controller
+                                .showUserTotalFavoriteWordsDialog(context);
                           },
-                          text: "200 Words"),
+                          text: "20+ Words"),
                       const SizedBox(height: 90)
                     ],
                   ),
@@ -130,22 +139,25 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
                     children: [
                       const SizedBox(height: 80),
                       ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.85);
+                          onPressed: () async {
+                            await _controller
+                                .showUserTotalFavoriteWordsDialog(context);
                           },
-                          text: "900 Words"),
+                          text: "50+ Words"),
                       const SizedBox(height: 120),
                       ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.50);
+                          onPressed: () async {
+                            await _controller
+                                .showUserTotalFavoriteWordsDialog(context);
                           },
-                          text: "300 Words"),
+                          text: "30+ Words"),
                       const SizedBox(height: 150),
                       ButtomModel(
-                          onPressed: () {
-                            _controller.setPercentValue(.15);
+                          onPressed: () async {
+                            await _controller
+                                .showUserTotalFavoriteWordsDialog(context);
                           },
-                          text: "100 Words"),
+                          text: "10 Words"),
                       const SizedBox(
                         height: 10,
                       )

@@ -1,6 +1,7 @@
 import 'package:climbing_english/core/widgets/app_colors.dart';
 import 'package:climbing_english/core/widgets/app_fonts.dart';
 import 'package:climbing_english/core/widgets/custom_drawer.dart';
+import 'package:climbing_english/core/widgets/my_logo.dart';
 import 'package:climbing_english/features/home/controller/home_controller.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flip_card/flip_card.dart';
@@ -50,30 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            SizedBox(
-              height: 10,
-            ),
-            Text("Welcome to",
-                style:
-                    AppFonts.textinfo.copyWith(color: AppColors.maincolor3)),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Container(
-                width: 272,
-                height: 220,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("lib/assets/logo.png"),
-                      fit: BoxFit.fill),
-                ),
-              ),
-            ),
-            Text(
-              "Your Pocket Dictionary!",
-              style: AppFonts.textinfo2.copyWith(color: AppColors.maincolor3),
-              textAlign: TextAlign.center,
-            ),
+          children: [
+            MyLogo(),
             Padding(
               padding: const EdgeInsets.only(
                 top: 32.0,
