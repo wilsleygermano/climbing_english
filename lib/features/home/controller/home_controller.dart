@@ -49,9 +49,9 @@ abstract class _HomeControllerBase with Store {
       phonetic = wordModel.phonetic!;
       pronounceURL = wordModel.phoneticUrl!;
     } on DioError catch (e) {
-      word = "Houve um erro: ${e.error}";
-      firstMeaning = "Houve um erro: ${e.error}";
-      phonetic = "Houve um erro: ${e.error}";
+      word = "It was not possible to view the word of the day. Please try again later. ${e.error}";
+      firstMeaning = "It was not possible to view the Meaning Word. Please try again later. ${e.error}";
+      phonetic = "Error ${e.error}";
       pronounceURL = "Houve um erro: ${e.error}";
     }
   }
