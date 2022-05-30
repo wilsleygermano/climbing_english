@@ -73,7 +73,7 @@ class _RankPageState extends State<RankPage> with TickerProviderStateMixin {
               const SizedBox(
                 height: 15,
               ),
-              Text("We Need to See you Growing Up.",
+              Text('We Need to See you "Climbing Up".',
                   textAlign: TextAlign.center,
                   style: AppFonts.textfont18.copyWith(
                       color: AppColors.textcolor,
