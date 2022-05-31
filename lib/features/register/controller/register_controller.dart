@@ -39,13 +39,13 @@ abstract class _RegisterControllerBase with Store {
   bool get isPasswordConfirmationValid => passwordConfirmation == password;
 
   @observable
-  bool isPasswordVisible = false;
+  bool isPasswordVisible = true;
 
   @action
   void setPasswordVisibility() => isPasswordVisible = !isPasswordVisible;
 
   @observable
-  bool isPasswordConfirmationVisible = false;
+  bool isPasswordConfirmationVisible = true;
 
   @action
   void setPasswordConfirmationVisibility() =>

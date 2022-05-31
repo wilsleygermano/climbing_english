@@ -51,6 +51,16 @@ mixin _$RankController on _RankControllerBase, Store {
         .run(() => super.countUserFavoriteWords());
   }
 
+  late final _$showUserTotalFavoriteWordsDialogAsyncAction = AsyncAction(
+      '_RankControllerBase.showUserTotalFavoriteWordsDialog',
+      context: context);
+
+  @override
+  Future<dynamic> showUserTotalFavoriteWordsDialog(BuildContext context) {
+    return _$showUserTotalFavoriteWordsDialogAsyncAction
+        .run(() => super.showUserTotalFavoriteWordsDialog(context));
+  }
+
   late final _$_RankControllerBaseActionController =
       ActionController(name: '_RankControllerBase', context: context);
 

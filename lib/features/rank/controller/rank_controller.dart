@@ -29,7 +29,7 @@ abstract class _RankControllerBase with Store {
         words.docs.map((e) => FavoriteWordsModel.fromJson(e.data())).toList();
     totalWords = userFavoriteWords.length;
     if (userFavoriteWords.length <= 10) {
-      return percent = .15;
+      return percent = .0;
     }
     if (userFavoriteWords.length > 10 && userFavoriteWords.length <= 30) {
       return percent = .25;
