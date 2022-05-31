@@ -117,7 +117,7 @@ class _WordPageState extends State<WordPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 32, left: 22, right: 22),
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.68,
+                    height: MediaQuery.of(context).size.height * 0.65,
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(20),

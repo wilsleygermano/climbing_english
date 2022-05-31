@@ -1,3 +1,4 @@
+import 'package:climbing_english/features/register/view/register_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -69,8 +70,18 @@ abstract class _RegisterControllerBase with Store {
           .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        return CustomDialog(context, "Error", "Weak Password", "OK",
-            () => Navigator.pop(context));
+        return CustomDialog(
+          context,
+          "Error",
+          "Weak Password",
+          "OK",
+          () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RegisterPage(),
+            ),
+          ),
+        );
       } else if (e.code == 'email-already-in-use') {
         return CustomDialog(
             context,
